@@ -24,3 +24,8 @@ project SI 2017
  
  
  ## test - LInux / Windows
+
+Python3 - Kodingan django di folder "perpus"
+pip3 install django
+https://docs.djangoproject.com/en/1.11/intro/tutorial01/
+
