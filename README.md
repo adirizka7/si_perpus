@@ -14,4 +14,13 @@ project SI 2017
  - Skema, dan analisis kebutuhan
  - Analisis keadaan komputer, pengguna, dll
 
-
+13 November : Fiksasi Platform
+ - Django
+ - Sqllite
+ 
+ ## Spec
+ Windows XP
+ django
+ 
+ 
+ ## test - LInux / Windows
