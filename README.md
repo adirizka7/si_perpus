@@ -1,25 +1,32 @@
 # si_perpus
 project SI 2017
 
-## Client : Perpustakaan FMIPA
+# Client : Perpustakaan FMIPA
 
-11 September 2017 : First Encounter
+##11 September 2017 : First Encounter
 - Kenalan dengan Client  
 - Lihat Keadaan
 - Proses Bisnis secara umum
 
- October 2017 : Kedua
+## October 2017 : Kedua
  - Proses Bisnis Dengan Detail
  - Meminta data
  - Skema, dan analisis kebutuhan
  - Analisis keadaan komputer, pengguna, dll
 
-13 November : Fiksasi Platform
+## 13 November : Fiksasi Platform
  - Django
  - Sqllite
 
-22 November :
+## 22 November :
  - sprint
+
+Pembagian tugas 1:
+- Front End (Bebas)
+- Xlsx-CSV
+- Database (Sqllite3) 
+
+
  
  ## Spec
  Windows XP
