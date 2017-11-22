@@ -17,6 +17,9 @@ project SI 2017
 13 November : Fiksasi Platform
  - Django
  - Sqllite
+
+22 November :
+ - sprint
  
  ## Spec
  Windows XP
