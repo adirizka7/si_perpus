@@ -15,9 +15,14 @@ import os
 
 from .models import Mahasiswa
 
-class IndexHome(generic.ListView):
+class home(generic.ListView):
+	model = Mahasiswa
+	template_name = 'polls/index.html'
+
+class cek_status(generic.ListView):
 	model = Mahasiswa
 	template_name = 'polls/cek_status.html'
+
 
 class Searched(generic.ListView):
 	template_name = 'polls/temuan.html'

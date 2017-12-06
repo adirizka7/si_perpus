@@ -7,9 +7,10 @@ from . import views
 
 app_name = 'polls'
 urlpatterns = [
-    url(r'^$', views.IndexHome.as_view(), name='home'),
-    url(r'^cari/$', views.cari, name='cari'),
-    url(r'^(?P<nim>[a-zA-Z0-9_]+)/$', views.Searched.as_view(), name='searched'),
+    url(r'^$', views.home.as_view(), name='home'),
+    url(r'^cek_status/$', views.cek_status.as_view(), name='cek_status'),
+    url(r'^cek_status/cari/$', views.cari, name='cari'),
+    url(r'^cek_status/(?P<nim>[a-zA-Z0-9_]+)/$', views.Searched.as_view(), name='searched'),
     #url(r'^updatedata/$', views.crud.updatedata, name='updatedata'),
     #url(r'^([0-9]+)/editdata/$', views.crud.editdata, name='editdata'),
     #url(r'^([0-9]+)/deletedata/$', views.crud.deletedata, name='deletedata'),

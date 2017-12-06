@@ -1,13 +1,37 @@
-{% load static %}
+<html>
+    {% load static %}
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.min.css' %}">
+            <script src="{% static 'jquery/jquery-3.1.1.min.js' %}"></script>
+            <script src="{% static 'semantic/semantic.min.js' %}"></script>
+            <title>Home PerpusI</title>
 
-<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+    </head>
+        
+    <body>
+        
+    <div class="ui center aligned container" style="padding-top:10%;padding-bottom:3%" >
+        <h1 class="ui header">Selamat Datang di <b>SIP</b>erpus</h1>
+        <h2 class="ui header">Sistem Informasi Perpustakaan</h2>
+    </div>
+    
+        <div class="ui  center aligned text container segment" style="padding:5%">
+            <h3 class="ui center aligned violet header">Silahkan Log In</h3>
+            <form class="ui form" method="post">
+                <div class="field">
+                    <label>Username</label>
+                    <input type="text" placeholder="Username" name="username" >
+                </div>
+                <div class="field">
+                    <label>Password</label>
+                    <input type="password" placeholder="Password" name="password">
+                </div>
+                    <button class="Big ui inverted violet button" type="submit">Log In</button>
+            </form>
+        </div>
 
-{% if latest_question_list %}
-    <ul>
-    {% for question in latest_question_list %}
-        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No polls are available.</p>
-{% endif %}
+    </body>
+
+
+</html>
