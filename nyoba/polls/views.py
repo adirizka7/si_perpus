@@ -23,7 +23,9 @@ class Searched(generic.ListView):
 	template_name = 'polls/temuan.html'
 	context_object_name = 'searcheded'
 	def get_queryset(self):
-		return Mahasiswa.objects.filter(NIM__icontains=self.kwargs['nim'])
+		nim_argument = self.kwargs['nim']
+		nim_argument = nim_argument.upper()
+		return Mahasiswa.objects.filter(NIM__icontains=nim_argument)
 
 
 def cari(request):
