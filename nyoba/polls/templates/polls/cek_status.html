@@ -1,0 +1,53 @@
+<html>
+	
+	{% load static %}
+        <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
+            <script src="jquery/jquery-3.1.1.min.js"></script>
+            <script src="semantic/semantic.min.js"></script>
+            <title>Home PerpusI</title>
+    
+        </head>
+            
+        <body>
+            <div class="ui  container">
+                <div class="ui  secondary pointing menu">
+                    <div class="header item">
+                        <h2>SIPerpus</h2>
+                    </div>
+                    <a class="item" href="home.html">
+                    Home
+                    </a>
+                    <a class="active item">
+                    Cek Status
+                    </a>
+                    <a class="item">
+                    Tambah Syarat
+                    </a>
+                    <a class="item">
+                        Rekap Data
+                    </a>
+                    <a class="item">
+                        Import CSV
+                    </a>
+                </div>
+                </div>
+
+                <h1 class="ui center aligned header" style="padding-top:6%">Cek Status Mahasiswa</h1>
+
+				
+                <div class="ui center aligned text container" style="padding:5%">
+                        <form class="ui massive form" method="post" action="{% url 'polls:cari'%}">
+							{% csrf_token %}
+                            <div class="field">
+                                <input type="text" placeholder="Nama / NIM" name="search" >
+                            </div>
+                                <button class="massive ui teal button" type="submit">Cek Status</button>
+                        </form>
+                    </div>
+    
+        </body>
+    
+    
+    </html>
