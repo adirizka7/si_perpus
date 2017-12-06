@@ -17,7 +17,11 @@ from .models import Mahasiswa
 
 class home(generic.ListView):
 	model = Mahasiswa
-	template_name = 'polls/index.html'
+	template_name = 'polls/home.html'
+
+class login(generic.ListView):
+	model = Mahasiswa
+	template_name = 'polls/login.html'
 
 class cek_status(generic.ListView):
 	model = Mahasiswa
