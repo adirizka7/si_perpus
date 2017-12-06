@@ -38,9 +38,13 @@
 
 				{% csrf_token %}
 				<table>
+					
+					<tr>
+                                    <td>alay</td>
+                    </tr>
                 {% for g in searcheded %}
                                 <tr>
-                                    <td>{{ g.NIM }}</td>
+                                    <td>{{ g }}</td>
                                 </tr>
                  {% endfor %}
                  </table>

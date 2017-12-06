@@ -16,18 +16,14 @@ import os
 from .models import Mahasiswa
 
 class IndexHome(generic.ListView):
+	model = Mahasiswa
 	template_name = 'polls/cek_status.html'
-	context_object_name = 'hal_cari'
-	def output(request, nim):
-		g = Mahasiswa.objects.filter(NIM__icontains=nim)
-	def get_queryset(self):
-		return g.objects.order_by('NIM')
 
 class Searched(generic.ListView):
 	template_name = 'polls/temuan.html'
 	context_object_name = 'searcheded'
 	def get_queryset(self):
-		return Mahasiswa.objects.filter(NIM__icontains='uhuy')
+		return Mahasiswa.objects.filter(NIM__icontains=self.kwargs['nim'])
 
 
 def cari(request):
