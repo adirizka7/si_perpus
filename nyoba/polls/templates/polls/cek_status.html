@@ -44,10 +44,29 @@
                                 <input type="text" placeholder="Nama / NIM" name="search" >
                             </div>
                                 <button class="massive ui teal button" type="submit">Cek Status</button>
+                        <div class="ui error message"></div>
                         </form>
                     </div>
     
         </body>
     
+        <script>
+            $('.ui.form')
+  .form({
+    fields: {
+      name: {
+        identifier: 'search',
+        rules: [
+          {
+            type   : 'minLength[9]',
+            prompt : 'format NIM tidak valid'
+          }
+        ]
+      },
+      
+    }
+  })
+;
+        </script>
     
     </html>
