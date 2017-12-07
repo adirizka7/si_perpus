@@ -30,6 +30,9 @@ class cek_status(generic.ListView):
 class tambah_syarat(generic.ListView):
 	model = Mahasiswa
 	template_name = 'polls/tambah_syarat.html'
+	context_object_name = 'dropp'
+	def get_queryset(self):
+		return Mahasiswa.objects.all()
 
 class rekap_data(generic.ListView):
 	model = Mahasiswa

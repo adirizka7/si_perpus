@@ -23,7 +23,7 @@
                     Cek Status
                     </a>
                     <a class="active item">
-                    Tambah Syarat
+                    Tambah Skripsi
                     </a>
                     <a class="item" href="/rekap_data">
                         Rekap Data
@@ -34,8 +34,44 @@
                 </div>
                 </div>
 
-                <h1 class="ui center aligned header" style="padding-top:6%">Tambah Syarat</h1>
+				<h1 class="ui Left aligned header" style="padding-top:6%">Skripsi</h1>
 
+                <form class="ui form">
+					
+				  <div class="field">
+					<label>Judul(Indonesia)</label>
+					<input type="text" name="IND" placeholder="IND">
+				  </div>
+				  <div class="field">
+					<label>Judul(English)</label>
+					<input type="text" name="ENG" placeholder="ENG">
+				  </div>
+				  <div class="field">
+					<label>Nama</label>
+					<input type="text" name="nama" placeholder="ENG">
+				  </div>
+				  <div class="field">
+					<label>NIM</label>
+					<input type="text" name="nim" placeholder="ENG">
+				  </div>
+				  <div class="field">
+					<label>Pembimbing</label>
+					<input type="text" name="pembimbing" placeholder="ENG">
+				  </div>
+				  <div class="field">
+					<label>Penguji</label>
+					<input type="text" name="penguji" placeholder="ENG">
+				  </div>
+				  <div class="field">
+					<label>Tanggal Penyerahan</label>
+					<input type="date" name="tanggal" placeholder="Bulan/Hari/Tahun">
+				  </div>
+				  <div class="field">
+				  </div>
+				  <button class="ui button" type="submit">Submit</button>
+				</form>
+                    
+				<h1 class="ui center aligned header" style="padding-top:6%">Tambah Syarat</h1>
 				
                 <div class="ui text container" >
                         <form class="ui form" method="post" action="{% url 'polls:cari'%}">
@@ -44,6 +80,12 @@
                               <div class="field">
                                 <label>Nama Mahasiswa/i</label>
                                 <select class="ui search dropdown">
+							{% if dropp %}
+									<option value="">Ketik Nama</option>
+                            {% for mahasiswa in dropp %}
+                                    <option value="{{ mahasiswa.nama }}">{{ mahasiswa.nama }}</option>
+                            {% endfor %}
+                            {% else %}
                                   <option value="">Ketik Nama</option>
                                   <option value="AF">Harits ara</option>
                                   <option value="WF">Adi riz</option>
@@ -51,9 +93,9 @@
                                   <option value="YE">jonggi</option>
                                   <option value="ZM">ayam</option>
                                   <option value="ZW">Sapi</option>
-                                </select>
-                              </div>
-
+							{% endif %}
+							</select>
+                            </div>
 
 
                             <div class="inline field">
@@ -91,6 +133,12 @@
         $('select.dropdown')
           .dropdown()
         ;
+        $('.ui.accordion')
+  .accordion()
+;
+		$('#example2').calendar({
+  type: 'date'
+});
     </script>
         </body>
     
