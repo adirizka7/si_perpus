@@ -27,6 +27,18 @@ class cek_status(generic.ListView):
 	model = Mahasiswa
 	template_name = 'polls/cek_status.html'
 
+class tambah_syarat(generic.ListView):
+	model = Mahasiswa
+	template_name = 'polls/tambah_syarat.html'
+
+class rekap_data(generic.ListView):
+	model = Mahasiswa
+	template_name = 'polls/rekap_data.html'
+
+class import_csv(generic.ListView):
+	model = Mahasiswa
+	template_name = 'polls/import_csv.html'
+
 
 class Searched(generic.ListView):
 	template_name = 'polls/temuan.html'
