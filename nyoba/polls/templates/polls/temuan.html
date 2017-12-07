@@ -31,23 +31,80 @@
                     <a class="item" href="/import_csv">
                         Import CSV
                     </a>
-                </div>
+            </div>
 
-                <h1 class="ui center aligned header" style="padding-top:6%">Cek Status Mahasiswa</h1>
-
+                <h1 class="ui center aligned header" style="padding-top:6%;padding-bottom:10%">Cek Status Mahasiswa</h1>
+                <div class="ui center aligned text container    ">
 				{% csrf_token %}
-				<table>
-					
-					<tr>
-                                    <td>Not Found</td>
-                    </tr>
+				
+					{% if not searcheded   %}
+                    <div class="ui warning message">
+                      <i class="close icon"></i>
+                      <div class="header">
+                        NIM tidak ditemukan
+                      </div>
+                      <p><a href="/tambah_syarat">Anda bisa menambahkan data di sini</a></p>
+                    </div>
+
+                    {% endif %}
+                    
                 {% for g in searcheded %}
-                                <tr>
-                                    <td>{{ g }}</td>
-                                </tr>
+                    
+                    <table class="ui very basic collapsing celled center aligned table">
+                      <thead>
+                        <tr>
+                        <th>Nama</th>
+                        <th>NIM</th>
+                        <th>Skripsi</th>
+                        <th>Abstrak</th>
+                        <th>CD</th>
+                        <th>Buku Sumbangan</th>
+                      </tr></thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <h4 class="ui image header">
+                              <div class="content">
+                                {{g}}
+                              </div>
+                            </div>
+                          </h4></td>
+                          <td>22</td>
+                          <td class="center aligned">
+                            <i class="large green checkmark icon"></i>
+                          </td> <!-- SKripsi -->
+
+                          <td class="center aligned">
+                            <i class="large green checkmark icon"></i>
+                          </td> <!-- abstrak -->
+
+                          <td class="center aligned">
+                            <i class="large green checkmark icon"></i>
+                          </td> <!-- cd -->
+
+                          <td class="center aligned negative">
+                            <i >Belum</i>
+                          </td> <!-- buku sumbangan -->
+                        </tr>
+                        
+                      </tbody>
+                    </table>
+
                  {% endfor %}
-                 </table>
-    
+                 
+                 <h2><a href="#">Edit entri</a></h2>
+                 <p style="padding-top:15%"><a href="/cek_status">Kembali</a></p>
+             </div>
+<script>
+             $('.message .close')
+              .on('click', function() {
+                $(this)
+                  .closest('.message')
+                  .transition('fade')
+                ;
+              })
+            ;
+</script>
         </body>
     
     
