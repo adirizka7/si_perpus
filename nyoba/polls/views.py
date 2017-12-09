@@ -13,7 +13,7 @@ from django.conf import settings
 
 import os
 
-from .models import Mahasiswa
+from .models import *
 
 class home(generic.ListView):
 	model = Mahasiswa
@@ -27,9 +27,9 @@ class cek_status(generic.ListView):
 	model = Mahasiswa
 	template_name = 'polls/cek_status.html'
 
-class tambah_syarat(generic.ListView):
+class tambah_data(generic.ListView):
 	model = Mahasiswa
-	template_name = 'polls/tambah_syarat.html'
+	template_name = 'polls/tambah_data.html'
 	context_object_name = 'dropp'
 	def get_queryset(self):
 		return Mahasiswa.objects.all()
@@ -46,12 +46,61 @@ class import_csv(generic.ListView):
 class Searched(generic.ListView):
 	template_name = 'polls/temuan.html'
 	context_object_name = 'searcheded'
+	def get_context_data(self, **kwargs):
+		context = super(Searched, self).get_context_data(**kwargs)
+		skripsi = Skripsi.objects.filter(NIM__icontains=self.kwargs['nim'])
+		if skripsi:
+			context['skripsi'] = skripsi[0].judul_IND
+		mahasiswa = Mahasiswa.objects.get(NIM__icontains=self.kwargs['nim'])
+		buku = BukuS.objects.filter(penyumbang=mahasiswa)
+		if buku:
+			context['buku'] = buku[0].judul
+		return context
 	def get_queryset(self):
 		nim_argument = self.kwargs['nim']
 		nim_argument = nim_argument.upper()
 		return Mahasiswa.objects.filter(NIM__icontains=nim_argument)
 
-
 def cari(request):
 	alfa = request.POST['search']
 	return HttpResponseRedirect(reverse('polls:searched', args=[alfa]))
+
+def savedata_sumbangan(request, nim):
+	if request.POST:
+		judul=request.POST['judul']
+		penulis=request.POST['penulis']
+		tahun=request.POST['tahun']
+		m = Mahasiswa.objects.filter(NIM__icontains=nim)
+		name = m[0].nama
+		b = BukuS(judul = judul, nama_penulis = penulis, pub_date = tahun, penyumbang = name)
+		b.save()
+	return HttpResponseRedirect(reverse('polls:searched', args=[nim]))
+
+def savedata_skripsi(request):
+	if request.POST:
+		nama=request.POST['nama']
+		nim=request.POST['nim']
+		if Mahasiswa.objects.filter(NIM__icontains=nim).exists():
+			sv = Skripsi(judul_IND=request.POST['IND'], judul_ENG=request.POST['ENG'], nama_penulis=nama, NIM=nim, pembimbing=request.POST['pembimbing'], penguji=request.POST['penguji'], tanggal_penyerahan=request.POST['tanggal'], tanggal_lulus=request.POST['lulus'],pub_date=timezone.now())
+			sv.save()
+		else:
+			mv = Mahasiswa(nama = nama, NIM = nim, status = 0)
+			mv.save()
+			sv = Skripsi(judul_IND=request.POST['IND'], judul_ENG=request.POST['ENG'], nama_penulis=nama, NIM=nim, pembimbing=request.POST['pembimbing'], penguji=request.POST['penguji'], tanggal_penyerahan=request.POST['tanggal'], tanggal_lulus=request.POST['lulus'],pub_date=timezone.now())
+			sv.save()
+	# return redirect()
+	return HttpResponseRedirect(reverse('polls:tambah_data'))
+
+def savedata_tesis(request):
+	if request.POST:
+		nama=request.POST['nama1']
+		nim=request.POST['nim1']
+		if Mahasiswa.objects.filter(NIM__icontains=nim).exists():
+			sv = Tesis(judul_IND=request.POST['IND1'], judul_ENG=request.POST['ENG1'],  ps=request.POST['ps'], nama_penulis=nama, NIM=nim, pembimbing=request.POST['pembimbing1'], penguji=request.POST['penguji1'], tanggal_penyerahan=request.POST['tanggal1'], tanggal_lulus=request.POST['lulus1'],pub_date=timezone.now())
+			sv.save()
+		else:
+			mv = Mahasiswa(nama = nama, NIM = nim, status = 0)
+			mv.save()
+			sv = Tesis(judul_IND=request.POST['IND1'], judul_ENG=request.POST['ENG1'],  ps=request.POST['ps'], nama_penulis=nama, NIM=nim, pembimbing=request.POST['pembimbing1'], penguji=request.POST['penguji1'], tanggal_penyerahan=request.POST['tanggal1'], tanggal_lulus=request.POST['lulus1'],pub_date=timezone.now())
+			sv.save()
+	return HttpResponseRedirect(reverse('polls:tambah_data'))

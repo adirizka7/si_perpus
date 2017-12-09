@@ -1,5 +1,5 @@
 <html>
-	
+
 	{% load static %}
         <head>
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +7,9 @@
             <script src="{% static 'jquery/jquery-3.1.1.min.js' %}"></script>
             <script src="{% static 'semantic/semantic.min.js' %}"></script>
             <title> Cek status</title>
-    
+
         </head>
-            
+
         <body>
             <div class="ui  container">
                 <div class="ui  secondary pointing menu">
@@ -22,7 +22,7 @@
                     <a class="active item">
                     Cek Status
                     </a>
-                   <a class="item" href="/tambah_syarat">
+                   <a class="item" href="/tambah_data">
                     Tambah Syarat
                     </a>
                     <a class="item" href="/rekap_data">
@@ -36,7 +36,7 @@
 
                 <h1 class="ui center aligned header" style="padding-top:6%">Cek Status Mahasiswa</h1>
 
-				
+
                 <div class="ui center aligned text container" style="padding:5%">
                         <form class="ui massive form" method="post" action="{% url 'polls:cari'%}">
 							{% csrf_token %}
@@ -47,9 +47,9 @@
                         <div class="ui error message"></div>
                         </form>
                     </div>
-    
+
         </body>
-    
+
         <script>
             $('.ui.form')
   .form({
@@ -63,10 +63,10 @@
           }
         ]
       },
-      
+
     }
   })
 ;
         </script>
-    
+
     </html>

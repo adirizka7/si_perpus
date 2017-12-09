@@ -11,6 +11,7 @@ class Skripsi(models.Model):
 	penguji = models.CharField(max_length=200)
 	tanggal_lulus = models.DateTimeField(null=True, blank=True)
 	tanggal_penyerahan = models.DateTimeField(null=True, blank=True)
+	pub_date = models.DateTimeField(default=timezone.now())
 
 	class Meta:
 		db_table = u'polls_Skripsi'
@@ -29,6 +30,7 @@ class Tesis(models.Model):
 	tanggal_lulus = models.DateTimeField(null=True, blank=True)
 	tanggal_penyerahan = models.DateTimeField(null=True, blank=True)
 	no_panggil = models.CharField(max_length=200)
+	pub_date = models.DateTimeField(default=timezone.now())
 
 	class Meta:
 		db_table = u'polls_Tesis'
@@ -40,6 +42,7 @@ class BukuS(models.Model):
 	judul = models.CharField(max_length=200)
 	nama_penulis = models.CharField(max_length=200)
 	penyumbang = models.CharField(max_length=200)
+	pub_date = models.IntegerField(default=1945)
 
 	class Meta:
 		db_table = u'polls_BukuS'
@@ -57,6 +60,7 @@ class Peminjaman(models.Model):
 	tanggal_pinjam = models.DateTimeField(null=True, blank=True)
 	tanggal_kembali = models.DateTimeField(null=True, blank=True)
 	tanggal_kembali_riil = models.DateTimeField(null=True, blank=True)
+	pub_date = models.DateTimeField(default=timezone.now())
 
 	class Meta:
 		db_table = u'polls_Peminjaman'
