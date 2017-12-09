@@ -43,6 +43,7 @@ class BukuS(models.Model):
 	nama_penulis = models.CharField(max_length=200)
 	penyumbang = models.CharField(max_length=200)
 	pub_date = models.IntegerField(default=1945)
+	entry_date = models.DateTimeField(default=timezone.now())
 
 	class Meta:
 		db_table = u'polls_BukuS'
