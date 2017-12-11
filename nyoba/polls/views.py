@@ -45,10 +45,12 @@ class import_csv(generic.ListView):
 
 def import_csv_process(request):
 	if request.POST:
+		print(os.getcwd())
 		tipe = request.POST['tipe']
 		file_doc = request.FILES['file_doc']
 		print(tipe)
-		with open('/tmp/'++'.xlsx','wb+') as dest:
+		print()
+		with open('temp/'+'TEMP'+'.xlsx','wb+') as dest:
 			for chunk in file_doc.chunks():
 				dest.write(chunk)
 		
