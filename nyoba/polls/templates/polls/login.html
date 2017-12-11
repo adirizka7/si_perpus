@@ -19,6 +19,7 @@
         <div class="ui  center aligned text container segment" style="padding:5%">
             <h3 class="ui center aligned violet header">Silahkan Log In</h3>
             <form class="ui form" method="post">
+                {% csrf_token %}
                 <div class="field">
                     <label>Username</label>
                     <input type="text" placeholder="Username" name="username" >

@@ -23,6 +23,10 @@ class login(generic.ListView):
 	model = Mahasiswa
 	template_name = 'polls/login.html'
 
+class logout(generic.ListView):
+	model = Mahasiswa
+	template_name = 'polls/login.html'
+
 class cek_status(generic.ListView):
 	model = Mahasiswa
 	template_name = 'polls/cek_status.html'

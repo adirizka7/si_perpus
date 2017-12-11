@@ -2,13 +2,17 @@ from django.conf.urls import url
 from django.conf.urls.static import static
 from django.conf import settings
 from django.conf.urls import include
+from django.contrib.auth import views as auth_views
+    
+
 
 from . import views
 
 app_name = 'polls'
 urlpatterns = [
     url(r'^$', views.home.as_view(), name='home'),
-    url(r'^login/$', views.login.as_view(), name='login'),
+    url(r'^login/$', auth_views.login, {'template_name': 'polls/login.html'}, name='login'),
+    url(r'^logout/$', auth_views.logout, {'template_name': 'polls/login.html'}, name='logout'),
     url(r'^tambah_data/$', views.tambah_data.as_view(), name='tambah_data'),
     url(r'^tambah_data/skripsi/$', views.savedata_skripsi, name='skripsi'),
     url(r'^tambah_data/tesis/$', views.savedata_tesis, name='tesis'),
