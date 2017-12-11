@@ -43,6 +43,17 @@ class import_csv(generic.ListView):
 	template_name = 'polls/import_csv.html'
 
 
+def import_csv_process(request):
+	if request.POST:
+		tipe = request.POST['tipe']
+		file_doc = request.FILES['file_doc']
+		print(tipe)
+		with open('/tmp/'++'.xlsx','wb+') as dest:
+			for chunk in file_doc.chunks():
+				dest.write(chunk)
+		
+	return HttpResponseRedirect(reverse('polls:import_csv'))
+
 class Searched(generic.ListView):
 	template_name = 'polls/temuan.html'
 	context_object_name = 'searcheded'

@@ -36,16 +36,80 @@
 
                 <h1 class="ui center aligned header" style="padding-top:6%">Import CSV</h1>
 
-				
+
                 <div class="ui center aligned text container" style="padding:5%">
-                       <!--  <form class="ui massive form" method="post" action="{% url 'polls:cari'%}">
-							{% csrf_token %}
-                            <div class="field">
-                                <input type="text" placeholder="Nama / NIM" name="search" >
-                            </div>
-                                <button class="massive ui teal button" type="submit">Cek Status</button>
-                        </form> -->
-                        ??
+                    <form class="ui form" method="POST" action="{% url 'polls:import_csv_process' %}"   enctype='multipart/form-data' >
+                        {% csrf_token %}
+                        <div class="field">
+                            <label>Skripsi</label>
+                        </div>
+                        <div class="inline field">
+                            <input type="hidden" name="tipe" value="skripsi">
+                            <input type="file"  name="file_doc" required>
+                            <button class="ui teal button" type="submit">Submit</button>
+                        </div>
+                    </form>
+
+                    <form class="ui form" method="POST" action="{% url 'polls:import_csv_process' %}" enctype='multipart/form-data'>
+                        {% csrf_token %}
+                         <div class="field">
+                            <label>Tesis</label>
+                        </div>
+                        <div class="inline field">
+                            <input type="hidden" name="tipe" value="tesis">
+                            <input type="file" name="file_doc" required>
+                            <button class="ui teal button" type="submit">Submit</button>
+                        </div>
+                    </form>
+
+                    <form class="ui form" method="POST" action="{% url 'polls:import_csv_process' %}" enctype='multipart/form-data'>
+                        {% csrf_token %}
+                         <div class="field">
+                            <label>Mahasiswa</label>
+                        </div>
+                        <div class="inline field">
+                            <input type="hidden" name="tipe" value="mahasiswa">
+                            <input type="file" name="file_doc" required>
+                            <button class="ui teal button" type="submit">Submit</button>
+                        </div>
+                    </form>
+
+                    <form class="ui form" method="POST" action="{% url 'polls:import_csv_process' %}" enctype='multipart/form-data'>
+                        {% csrf_token %}
+                         <div class="field">
+                            <label>Peminjaman</label>
+                        </div>
+                        <div class="inline field">
+                            <input type="hidden" name="tipe" value="peminjaman">
+                            <input type="file" name="file_doc" required>
+                            <button class="ui teal button" type="submit">Submit</button>
+                        </div>
+                    </form>
+
+                    <form class="ui form" method="POST" action="{% url 'polls:import_csv_process' %}" enctype='multipart/form-data'>
+                        {% csrf_token %}
+                         <div class="field">
+                            <label>Buku Sumbangan</label>
+                        </div>
+                        <div class="inline field">
+                            <input type="hidden" name="tipe" value="buku_sumbangan">
+                            <input type="file" name="file_doc" required>
+                            <button class="ui teal button" type="submit">Submit</button>
+                        </div>
+                    </form>
+
+                    <form class="ui form" method="POST" action="{% url 'polls:import_csv_process' %}" enctype='multipart/form-data'>
+                        {% csrf_token %}
+                         <div class="field">
+                            <label>Penyerahan</label>
+                        </div>
+                        <div class="inline field">
+                            <input type="hidden" name="tipe" value="penyerahan">
+                            <input type="file" name="file_doc" required>
+                            <button class="ui teal button" type="submit">Submit</button>
+                        </div>    
+                    
+                    </form>
                     </div>
     
         </body>

@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^tambah_data/tesis/$', views.savedata_tesis, name='tesis'),
     url(r'^rekap_data/$', views.rekap_data.as_view(), name='rekap_data'),
     url(r'^import_csv/$', views.import_csv.as_view(), name='import_csv'),
+    url(r'^import_csv/proc$', views.import_csv_process, name='import_csv_process'),
     url(r'^cek_status/$', views.cek_status.as_view(), name='cek_status'),
     url(r'^cek_status/cari/$', views.cari, name='cari'),
     url(r'^cek_status/(?P<nim>[a-zA-Z0-9_]+)/$', views.Searched.as_view(), name='searched'),
