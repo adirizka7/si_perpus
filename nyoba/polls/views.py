@@ -53,6 +53,26 @@ def import_csv_process(request):
 		with open('temp/'+'TEMP'+'.xlsx','wb+') as dest:
 			for chunk in file_doc.chunks():
 				dest.write(chunk)
+
+		import xlrd
+		import csv
+
+		csvPath = 'temp/'+'TEMP'+'.csv'
+		workBook = xlrd.open_workbook('temp/'+'TEMP'+'.xlsx')
+		nama_sheet = workBook.sheet_names()
+		list_sheet = []
+		length = len(nama_sheet)
+		for i in range(0,length):
+			sheet =  workBook.sheet_by_name(nama_sheet[i])
+			list_sheet.append(sheet)
+		outcsvFile = open(csvPath, 'w')
+		wr = csv.writer(outcsvFile, quoting=csv.QUOTE_ALL)
+		total_row = list_sheet[0].ncols
+		for k in range(0,len(list_sheet)):
+			for rownum in range(list_sheet[k].nrows):
+				wr.writerow(list_sheet[k].row_values(rownum))
+
+		outcsvFile.close()
 		
 	return HttpResponseRedirect(reverse('polls:import_csv'))
 
