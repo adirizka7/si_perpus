@@ -43,14 +43,50 @@ class import_csv(generic.ListView):
 	template_name = 'polls/import_csv.html'
 
 
+def import_csv_process(request):
+	if request.POST:
+		print(os.getcwd())
+		tipe = request.POST['tipe']
+		file_doc = request.FILES['file_doc']
+		print(tipe)
+		print()
+		with open('temp/'+'TEMP'+'.xlsx','wb+') as dest:
+			for chunk in file_doc.chunks():
+				dest.write(chunk)
+
+		import xlrd
+		import csv
+
+		csvPath = 'temp/'+'TEMP'+'.csv'
+		workBook = xlrd.open_workbook('temp/'+'TEMP'+'.xlsx')
+		nama_sheet = workBook.sheet_names()
+		list_sheet = []
+		length = len(nama_sheet)
+		for i in range(0,length):
+			sheet =  workBook.sheet_by_name(nama_sheet[i])
+			list_sheet.append(sheet)
+		outcsvFile = open(csvPath, 'w')
+		wr = csv.writer(outcsvFile, quoting=csv.QUOTE_ALL)
+		total_row = list_sheet[0].ncols
+		for k in range(0,len(list_sheet)):
+			for rownum in range(list_sheet[k].nrows):
+				wr.writerow(list_sheet[k].row_values(rownum))
+
+		outcsvFile.close()
+		
+	return HttpResponseRedirect(reverse('polls:import_csv'))
+
 class Searched(generic.ListView):
 	template_name = 'polls/temuan.html'
 	context_object_name = 'searcheded'
 	def get_context_data(self, **kwargs):
 		context = super(Searched, self).get_context_data(**kwargs)
 		skripsi = Skripsi.objects.filter(NIM__icontains=self.kwargs['nim'])
+		tesis = Tesis.objects.filter(NIM__icontains=self.kwargs['nim'])
 		if skripsi:
 			context['skripsi'] = skripsi[0].judul_IND
+		elif tesis:
+			context['tesis'] = tesis[0].judul_IND
 		mahasiswa = Mahasiswa.objects.get(NIM__icontains=self.kwargs['nim'])
 		buku = BukuS.objects.filter(penyumbang=mahasiswa)
 		if buku:
