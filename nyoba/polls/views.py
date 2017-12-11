@@ -49,8 +49,11 @@ class Searched(generic.ListView):
 	def get_context_data(self, **kwargs):
 		context = super(Searched, self).get_context_data(**kwargs)
 		skripsi = Skripsi.objects.filter(NIM__icontains=self.kwargs['nim'])
+		tesis = Tesis.objects.filter(NIM__icontains=self.kwargs['nim'])
 		if skripsi:
 			context['skripsi'] = skripsi[0].judul_IND
+		elif tesis:
+			context['tesis'] = tesis[0].judul_IND
 		mahasiswa = Mahasiswa.objects.get(NIM__icontains=self.kwargs['nim'])
 		buku = BukuS.objects.filter(penyumbang=mahasiswa)
 		if buku:
