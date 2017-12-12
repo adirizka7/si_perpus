@@ -1,0 +1,101 @@
+<html>
+{% load static %}
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.min.css' %}">
+  <script src="{% static 'jquery/jquery-3.1.1.min.js' %}"></script>
+  <script src="{% static 'semantic/semantic.min.js' %}"></script>
+  <title>Home PerpusI</title>
+
+
+</head>
+
+<body>
+  <div class="ui  container">
+    <div class="ui  secondary pointing menu">
+      <div class="header item">
+        <h2>SIPerpus</h2>
+      </div>
+      <a class="item" href="/">
+                    Home
+                    </a>
+      <a class="item" href="/cek_status">
+                    Cek Status
+                    </a>
+      <a class="item" href="/tambah_data">
+                    Tambah Syarat
+                    </a>
+      <a class="active item">
+                        Peminjaman Buku
+                    </a>
+      <a class="item" href="/rekap_data">
+                        Rekap Data
+                    </a>
+      <a class="item" href="/import_csv">
+                        Import CSV
+                    </a>
+    </div>
+  </div>
+
+  <div class="ui text container">
+    <h1 class="ui Left aligned header" style="padding-top:6%">Peminjaman Buku</h1>
+    <form class="ui form" method="POST" action="{% url 'polls:savedata_pinjam' %}">
+      {% csrf_token %}
+
+      <div class="field">
+        <label>Nama</label>
+        <input type="text" name="nama" placeholder="Nama" required>
+      </div>
+      <div class="field">
+        <label>NIM</label>
+        <input type="text" name="nim" placeholder="NIM" required>
+      </div>
+      <div class="field">
+        <label>Judul</label>
+        <input type="text" name="judul" placeholder="Judul" required>
+      </div>
+      <div class="field">
+        <label>Nomor Telepon</label>
+        <input type="text" name="phone" placeholder="Nomor Telepon" required>
+      </div>
+      <div class="field">
+        <label>Barcode</label>
+        <input type="text" name="barcode" placeholder="Barcode" required>
+      </div>
+      <div class="field">
+        <label>Pengarang</label>
+        <input type="text" name="pengarang" placeholder="Pengarang" required>
+      </div>
+      <div class="field">
+        <label>Tanggal Kembali Seharusnya</label>
+        <input type="date" name="tanggal" placeholder="Bulan/Hari/Tahun" required>
+      </div>
+      <button class="ui teal button" type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    $('.ui.form')
+      .form({
+        NomorMahasiswa: {
+          identifier: 'nim',
+          rules: [{
+            type: 'regExp[^[a-kA-K][0-9]{6}[0-9]+$]',
+            prompt: 'format NIM tidak valid'
+          }]
+        },
+        telephone: {
+          identifier: 'phone',
+          rules: [{
+            type: 'regExp[^[0-9]{7,15}$]',
+            prompt: 'format nomor tidak valid'
+          }]
+        }
+      });
+  </script>
+
+</body>
+
+
+</html>

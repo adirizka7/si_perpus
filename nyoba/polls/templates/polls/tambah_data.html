@@ -26,121 +26,110 @@
 			<a class="active item">
                     Tambah Skripsi
                     </a>
+			<a class="item" href="/Peminjaman">
+										Peminjaman Buku
+										</a>
 			<a class="item" href="/rekap_data">
-                        Rekap Data
+                    Rekap Data
                     </a>
 			<a class="item" href="/import_csv">
-                        Import CSV
+                    Import CSV
                     </a>
 		</div>
 	</div>
 
-	
+
 	<h1 class="ui center aligned header" style="padding-top:6%">Tambah Syarat</h1>
 
 	<div class="ui text container">
-		
+
 
 		<!--  -->
-	<h1 class="ui Left aligned header" style="padding-top:6%">Skripsi</h1>
-	<form class="ui form" method="POST" action="{% url 'polls:skripsi' %}">
-		{% csrf_token %}
-		
-		<div class="field">
-			<label>Nama</label>
-			<select class="ui search dropdown">
-					{% if dropp %}
-							<option value="">Ketik Nama</option>
-                    {% for mahasiswa in dropp %}
-                            <option value="{{ mahasiswa.nama }}">{{ mahasiswa.nama }}</option>
-                    {% endfor %}
-                    {% else %}
-                          <option value="">Ketik Nama</option>
-                          <option value="AF">Harits ara</option>
-                          <option value="WF">Adi riz</option>
-                          <option value="EH">Jodhi Lesmana</option>
-                          <option value="YE">jonggi</option>
-                          <option value="ZM">ayam</option>
-					{% endif %}
-				</select>
-		</div>
-		<div class="field">
-			<label>NIM</label>
-			<input type="text" name="nim" placeholder="NIM" required>
-		</div>
-		<div class="field">
-			<label>Judul(Indonesia)</label>
-			<input type="text" name="IND" placeholder="IND" required>
-		</div>
-		<div class="field">
-			<label>Judul(English)</label>
-			<input type="text" name="ENG" placeholder="ENG" required>
-		</div>
-		<div class="field">
-			<label>Pembimbing</label>
-			<input type="text" name="pembimbing" placeholder="Pembimbing" required>
-		</div>
-		<div class="field">
-			<label>Penguji</label>
-			<input type="text" name="penguji" placeholder="Penguji" required>
-		</div>
-		<div class="field">
-			<label>Tanggal Penyerahan</label>
-			<input type="date" name="tanggal" placeholder="Bulan/Hari/Tahun">
-		</div>
-		<div class="field">
-			<label>Tanggal Lulus</label>
-			<input type="date" name="lulus" placeholder="Bulan/Hari/Tahun">
-		</div>
-		<div class="field">
-		</div>
-		<button class="ui teal button" type="submit">Submit</button>
-	</form>
+		<h1 class="ui Left aligned header" style="padding-top:6%">Skripsi</h1>
+		<form class="ui form" method="POST" action="{% url 'polls:skripsi' %}">
+			{% csrf_token %}
 
-	<h1 class="ui Left aligned header" style="padding-top:6%">Tesis</h1>
-	<form class="ui form" method="POST" action="{% url 'polls:tesis' %}">
-		{% csrf_token %}
-		<div class="field">
-			<label>Nama</label>
-			<input type="text" name="nama1" placeholder="Nama" required>
-		</div>
-		<div class="field">
-			<label>NIM</label>
-			<input type="text" name="nim1" placeholder="NIM" required>
-		</div>
-		<div class="field">
-			<label>Judul(Indonesia)</label>
-			<input type="text" name="IND1" placeholder="IND" required>
-		</div>
-		<div class="field">
-			<label>Judul(English)</label>
-			<input type="text" name="ENG1" placeholder="ENG" required>
-		</div>
-		<div class="field">
-			<label>PS</label>
-			<input type="text" name="ps" placeholder="PS" required>
-		</div>
-		
-		<div class="field">
-			<label>Pembimbing</label>
-			<input type="text" name="pembimbing1" placeholder="Pembimbing" required>
-		</div>
-		<div class="field">
-			<label>Penguji</label>
-			<input type="text" name="penguji1" placeholder="Penguji" required>
-		</div>
-		<div class="field">
-			<label>Tanggal Penyerahan</label>
-			<input type="date" name="tanggal1" placeholder="Bulan/Hari/Tahun">
-		</div>
-		<div class="field">
-			<label>Tanggal Lulus</label>
-			<input type="date" name="lulus1" placeholder="Bulan/Hari/Tahun">
-		</div>
-		<div class="field">
-		</div>
-		<button class="ui teal button" type="submit">Submit</button>
-	</form>
+			<div class="field">
+				<label>Nama</label>
+				<input type="text" name="nama" placeholder="Nama" required>
+			</div>
+			<div class="field">
+				<label>NIM</label>
+				<input type="text" name="nim" placeholder="NIM" required>
+			</div>
+			<div class="field">
+				<label>Judul(Indonesia)</label>
+				<input type="text" name="IND" placeholder="IND" required>
+			</div>
+			<div class="field">
+				<label>Judul(English)</label>
+				<input type="text" name="ENG" placeholder="ENG" required>
+			</div>
+			<div class="field">
+				<label>Pembimbing</label>
+				<input type="text" name="pembimbing" placeholder="Pembimbing" required>
+			</div>
+			<div class="field">
+				<label>Penguji</label>
+				<input type="text" name="penguji" placeholder="Penguji" required>
+			</div>
+			<div class="field">
+				<label>Tanggal Penyerahan</label>
+				<input type="date" name="tanggal" placeholder="Bulan/Hari/Tahun">
+			</div>
+			<div class="field">
+				<label>Tanggal Lulus</label>
+				<input type="date" name="lulus" placeholder="Bulan/Hari/Tahun">
+			</div>
+			<div class="field">
+			</div>
+			<button class="ui teal button" type="submit">Submit</button>
+		</form>
+
+		<h1 class="ui Left aligned header" style="padding-top:6%">Tesis</h1>
+		<form class="ui form" method="POST" action="{% url 'polls:tesis' %}">
+			{% csrf_token %}
+			<div class="field">
+				<label>Nama</label>
+				<input type="text" name="nama1" placeholder="Nama" required>
+			</div>
+			<div class="field">
+				<label>NIM</label>
+				<input type="text" name="nim1" placeholder="NIM" required>
+			</div>
+			<div class="field">
+				<label>Judul(Indonesia)</label>
+				<input type="text" name="IND1" placeholder="IND" required>
+			</div>
+			<div class="field">
+				<label>Judul(English)</label>
+				<input type="text" name="ENG1" placeholder="ENG" required>
+			</div>
+			<div class="field">
+				<label>PS</label>
+				<input type="text" name="ps" placeholder="PS" required>
+			</div>
+
+			<div class="field">
+				<label>Pembimbing</label>
+				<input type="text" name="pembimbing1" placeholder="Pembimbing" required>
+			</div>
+			<div class="field">
+				<label>Penguji</label>
+				<input type="text" name="penguji1" placeholder="Penguji" required>
+			</div>
+			<div class="field">
+				<label>Tanggal Penyerahan</label>
+				<input type="date" name="tanggal1" placeholder="Bulan/Hari/Tahun">
+			</div>
+			<div class="field">
+				<label>Tanggal Lulus</label>
+				<input type="date" name="lulus1" placeholder="Bulan/Hari/Tahun">
+			</div>
+			<div class="field">
+			</div>
+			<button class="ui teal button" type="submit">Submit</button>
+		</form>
 
 	</div>
 

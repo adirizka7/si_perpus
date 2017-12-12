@@ -1,48 +1,52 @@
-    <html>
-	
-	{% load static %}
-        <head>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.min.css' %}">
-            <script src="{% static 'jquery/jquery-3.1.1.min.js' %}"></script>
-            <script src="{% static 'semantic/semantic.min.js' %}"></script>
-            <title> Cek status</title>
-    
-        </head>
-            
-        <body>
-            <div class="ui  container">
-                <div class="ui  secondary pointing menu">
-                    <div class="header item">
-                        <h2>SIPerpus</h2>
-                    </div>
-                    <a class="item" href="/">
+<html>
+
+{% load static %}
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.min.css' %}">
+  <script src="{% static 'jquery/jquery-3.1.1.min.js' %}"></script>
+  <script src="{% static 'semantic/semantic.min.js' %}"></script>
+  <title> Cek status</title>
+
+</head>
+
+<body>
+  <div class="ui  container">
+    <div class="ui  secondary pointing menu">
+      <div class="header item">
+        <h2>SIPerpus</h2>
+      </div>
+      <a class="item" href="/">
                     Home
                     </a>
-                    <a class="item" href="/cek_status">
+      <a class="item" href="/cek_status">
                     Cek Status
                     </a>
-                    <a class="item" href="/tambah_data">
+      <a class="item" href="/tambah_data">
                     Tambah Syarat
                     </a>
-                    <a class="active item">
-                        Rekap Data
+      <a class="item" href="/Peminjaman">
+                    Peminjaman Buku
                     </a>
-                    <a class="item" href="/import_csv">
-                        Import CSV
+      <a class="active item">
+                    Rekap Data
                     </a>
-                </div>
-                </div>
+      <a class="item" href="/import_csv">
+                    Import CSV
+                    </a>
+    </div>
+  </div>
 
-                <h1 class="ui center aligned header" style="padding-top:6%">Cek Status Mahasiswa</h1>
+  <h1 class="ui center aligned header" style="padding-top:6%">Cek Status Mahasiswa</h1>
 
-				
-                <div class="ui center aligned text container" style="padding:5%">
-                    Dari .. Ke ..        
-                </div>
 
-    
-        </body>
-    
-    
-    </html>
+  <div class="ui center aligned text container" style="padding:5%">
+    Dari .. Ke ..
+  </div>
+
+
+</body>
+
+
+</html>

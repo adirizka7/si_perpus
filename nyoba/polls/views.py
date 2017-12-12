@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template import loader
 from django.shortcuts import get_object_or_404, render, redirect
+from django.core.validators import RegexValidator
 
 from django.http import Http404
 from django.urls import reverse
@@ -18,6 +19,11 @@ from .models import *
 class home(generic.ListView):
 	model = Mahasiswa
 	template_name = 'polls/home.html'
+
+class pinjam(generic.ListView):
+	model = Peminjaman
+	template_name = 'polls/Peminjaman.html'
+
 
 class login(generic.ListView):
 	model = Mahasiswa
@@ -169,3 +175,16 @@ def savedata_tesis(request):
 			sv = Tesis(judul_IND=request.POST['IND1'], judul_ENG=request.POST['ENG1'],  ps=request.POST['ps'], nama_penulis=nama, NIM=nim, pembimbing=request.POST['pembimbing1'], penguji=request.POST['penguji1'], tanggal_penyerahan=request.POST['tanggal1'], tanggal_lulus=request.POST['lulus1'],pub_date=timezone.now())
 			sv.save()
 	return HttpResponseRedirect(reverse('polls:tambah_data'))
+
+def savedata_pinjam(request):
+	if request.POST:
+		nama=request.POST['nama']
+		nim=request.POST['nim']
+		judul=request.POST['judul']
+		phone=request.POST['phone']
+		barcode=request.POST['barcode']
+		pengarang=request.POST['pengarang']
+		tg=request.POST['tanggal']
+		pm=Peminjaman(nama=nama,NIM=nim,judul=judul,phone=phone,barcode=barcode,pengarang=pengarang,tanggal_pinjam=timezone.now(),tanggal_kembali=tg,pub_date=timezone.now())
+		pm.save()
+	return HttpResponseRedirect(reverse('polls:pinjam'))

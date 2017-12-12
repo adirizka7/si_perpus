@@ -1,118 +1,122 @@
 <html>
-	
-	{% load static %}
-        <head>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.min.css' %}">
-            <script src="{% static 'jquery/jquery-3.1.1.min.js' %}"></script>
-            <script src="{% static 'semantic/semantic.min.js' %}"></script>
-            <title> Cek status</title>
-    
-        </head>
-            
-        <body>
-            <div class="ui  container">
-                <div class="ui  secondary pointing menu">
-                    <div class="header item">
-                        <h2>SIPerpus</h2>
-                    </div>
-                    <a class="item" href="/">
+
+{% load static %}
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.min.css' %}">
+	<script src="{% static 'jquery/jquery-3.1.1.min.js' %}"></script>
+	<script src="{% static 'semantic/semantic.min.js' %}"></script>
+	<title> Cek status</title>
+
+</head>
+
+<body>
+	<div class="ui  container">
+		<div class="ui  secondary pointing menu">
+			<div class="header item">
+				<h2>SIPerpus</h2>
+			</div>
+			<a class="item" href="/">
                     Home
                     </a>
-                    <a class="item" href="/cek_status">
+			<a class="item" href="/cek_status">
                     Cek Status
                     </a>
-                    <a class="item" href="/tambah_data">
+			<a class="item" href="/tambah_data">
                     Tambah Syarat
                     </a>
-                    <a class="item" href="/rekap_data">
+			<a class="item" href="/Peminjaman">
+                    Peminjaman Buku
+                    </a>
+			<a class="item" href="/rekap_data">
                         Rekap Data
                     </a>
-                    <a class="active item">
+			<a class="active item">
                         Import CSV
                     </a>
-                </div>
-                </div>
+		</div>
+	</div>
 
-                <h1 class="ui center aligned header" style="padding-top:6%">Import CSV</h1>
+	<h1 class="ui center aligned header" style="padding-top:6%">Import CSV</h1>
 
 
-                <div class="ui center aligned text container" style="padding:5%">
-                    <form class="ui form" method="POST" action="{% url 'polls:import_csv_process' %}"   enctype='multipart/form-data' >
-                        {% csrf_token %}
-                        <div class="field">
-                            <label>Skripsi</label>
-                        </div>
-                        <div class="inline field">
-                            <input type="hidden" name="tipe" value="skripsi">
-                            <input type="file"  name="file_doc" required>
-                            <button class="ui teal button" type="submit">Submit</button>
-                        </div>
-                    </form>
+	<div class="ui center aligned text container" style="padding:5%">
+		<form class="ui form" method="POST" action="{% url 'polls:import_csv_process' %}" enctype='multipart/form-data'>
+			{% csrf_token %}
+			<div class="field">
+				<label>Skripsi</label>
+			</div>
+			<div class="inline field">
+				<input type="hidden" name="tipe" value="skripsi">
+				<input type="file" name="file_doc" required>
+				<button class="ui teal button" type="submit">Submit</button>
+			</div>
+		</form>
 
-                    <form class="ui form" method="POST" action="{% url 'polls:import_csv_process' %}" enctype='multipart/form-data'>
-                        {% csrf_token %}
-                         <div class="field">
-                            <label>Tesis</label>
-                        </div>
-                        <div class="inline field">
-                            <input type="hidden" name="tipe" value="tesis">
-                            <input type="file" name="file_doc" required>
-                            <button class="ui teal button" type="submit">Submit</button>
-                        </div>
-                    </form>
+		<form class="ui form" method="POST" action="{% url 'polls:import_csv_process' %}" enctype='multipart/form-data'>
+			{% csrf_token %}
+			<div class="field">
+				<label>Tesis</label>
+			</div>
+			<div class="inline field">
+				<input type="hidden" name="tipe" value="tesis">
+				<input type="file" name="file_doc" required>
+				<button class="ui teal button" type="submit">Submit</button>
+			</div>
+		</form>
 
-                    <form class="ui form" method="POST" action="{% url 'polls:import_csv_process' %}" enctype='multipart/form-data'>
-                        {% csrf_token %}
-                         <div class="field">
-                            <label>Mahasiswa</label>
-                        </div>
-                        <div class="inline field">
-                            <input type="hidden" name="tipe" value="mahasiswa">
-                            <input type="file" name="file_doc" required>
-                            <button class="ui teal button" type="submit">Submit</button>
-                        </div>
-                    </form>
+		<form class="ui form" method="POST" action="{% url 'polls:import_csv_process' %}" enctype='multipart/form-data'>
+			{% csrf_token %}
+			<div class="field">
+				<label>Mahasiswa</label>
+			</div>
+			<div class="inline field">
+				<input type="hidden" name="tipe" value="mahasiswa">
+				<input type="file" name="file_doc" required>
+				<button class="ui teal button" type="submit">Submit</button>
+			</div>
+		</form>
 
-                    <form class="ui form" method="POST" action="{% url 'polls:import_csv_process' %}" enctype='multipart/form-data'>
-                        {% csrf_token %}
-                         <div class="field">
-                            <label>Peminjaman</label>
-                        </div>
-                        <div class="inline field">
-                            <input type="hidden" name="tipe" value="peminjaman">
-                            <input type="file" name="file_doc" required>
-                            <button class="ui teal button" type="submit">Submit</button>
-                        </div>
-                    </form>
+		<form class="ui form" method="POST" action="{% url 'polls:import_csv_process' %}" enctype='multipart/form-data'>
+			{% csrf_token %}
+			<div class="field">
+				<label>Peminjaman</label>
+			</div>
+			<div class="inline field">
+				<input type="hidden" name="tipe" value="peminjaman">
+				<input type="file" name="file_doc" required>
+				<button class="ui teal button" type="submit">Submit</button>
+			</div>
+		</form>
 
-                    <form class="ui form" method="POST" action="{% url 'polls:import_csv_process' %}" enctype='multipart/form-data'>
-                        {% csrf_token %}
-                         <div class="field">
-                            <label>Buku Sumbangan</label>
-                        </div>
-                        <div class="inline field">
-                            <input type="hidden" name="tipe" value="buku_sumbangan">
-                            <input type="file" name="file_doc" required>
-                            <button class="ui teal button" type="submit">Submit</button>
-                        </div>
-                    </form>
+		<form class="ui form" method="POST" action="{% url 'polls:import_csv_process' %}" enctype='multipart/form-data'>
+			{% csrf_token %}
+			<div class="field">
+				<label>Buku Sumbangan</label>
+			</div>
+			<div class="inline field">
+				<input type="hidden" name="tipe" value="buku_sumbangan">
+				<input type="file" name="file_doc" required>
+				<button class="ui teal button" type="submit">Submit</button>
+			</div>
+		</form>
 
-                    <form class="ui form" method="POST" action="{% url 'polls:import_csv_process' %}" enctype='multipart/form-data'>
-                        {% csrf_token %}
-                         <div class="field">
-                            <label>Penyerahan</label>
-                        </div>
-                        <div class="inline field">
-                            <input type="hidden" name="tipe" value="penyerahan">
-                            <input type="file" name="file_doc" required>
-                            <button class="ui teal button" type="submit">Submit</button>
-                        </div>    
-                    
-                    </form>
-                    </div>
-    
-        </body>
-    
-    
-    </html>
+		<form class="ui form" method="POST" action="{% url 'polls:import_csv_process' %}" enctype='multipart/form-data'>
+			{% csrf_token %}
+			<div class="field">
+				<label>Penyerahan</label>
+			</div>
+			<div class="inline field">
+				<input type="hidden" name="tipe" value="penyerahan">
+				<input type="file" name="file_doc" required>
+				<button class="ui teal button" type="submit">Submit</button>
+			</div>
+
+		</form>
+	</div>
+
+</body>
+
+
+</html>

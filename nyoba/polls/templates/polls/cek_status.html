@@ -1,72 +1,73 @@
 <html>
 
-	{% load static %}
-        <head>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.min.css' %}">
-            <script src="{% static 'jquery/jquery-3.1.1.min.js' %}"></script>
-            <script src="{% static 'semantic/semantic.min.js' %}"></script>
-            <title> Cek status</title>
+{% load static %}
 
-        </head>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.min.css' %}">
+	<script src="{% static 'jquery/jquery-3.1.1.min.js' %}"></script>
+	<script src="{% static 'semantic/semantic.min.js' %}"></script>
+	<title> Cek status</title>
 
-        <body>
-            <div class="ui  container">
-                <div class="ui  secondary pointing menu">
-                    <div class="header item">
-                        <h2>SIPerpus</h2>
-                    </div>
-                    <a class="item" href="/">
+</head>
+
+<body>
+	<div class="ui  container">
+		<div class="ui  secondary pointing menu">
+			<div class="header item">
+				<h2>SIPerpus</h2>
+			</div>
+			<a class="item" href="/">
                     Home
                     </a>
-                    <a class="active item">
+			<a class="active item">
                     Cek Status
                     </a>
-                   <a class="item" href="/tambah_data">
+			<a class="item" href="/tambah_data">
                     Tambah Syarat
                     </a>
-                    <a class="item" href="/rekap_data">
+			<a class="item" href="/Peminjaman">
+										Peminjaman Buku
+										</a>
+			<a class="item" href="/rekap_data">
                         Rekap Data
                     </a>
-                    <a class="item" href="/import_csv">
+			<a class="item" href="/import_csv">
                         Import CSV
                     </a>
-                </div>
-                </div>
+		</div>
+	</div>
 
-                <h1 class="ui center aligned header" style="padding-top:6%">Cek Status Mahasiswa</h1>
+	<h1 class="ui center aligned header" style="padding-top:6%">Cek Status Mahasiswa</h1>
 
 
-                <div class="ui center aligned text container" style="padding:5%">
-                        <form class="ui massive form" method="post" action="{% url 'polls:cari'%}">
-							{% csrf_token %}
-                            <div class="field">
-                                <input type="text" placeholder="Nama / NIM" name="search" >
-                            </div>
-                                <button class="massive ui teal button" type="submit">Cek Status</button>
-                        <div class="ui error message"></div>
-                        </form>
-                    </div>
+	<div class="ui center aligned text container" style="padding:5%">
+		<form class="ui massive form" method="post" action="{% url 'polls:cari'%}">
+			{% csrf_token %}
+			<div class="field">
+				<input type="text" placeholder="Nama / NIM" name="search">
+			</div>
+			<button class="massive ui teal button" type="submit">Cek Status</button>
+			<div class="ui error message"></div>
+		</form>
+	</div>
 
-        </body>
+</body>
 
-        <script>
-            $('.ui.form')
-  .form({
-    fields: {
-      name: {
-        identifier: 'search',
-        rules: [
-          {
-            type   : 'regExp[^[A-Ka-k][0-9]{8}$]',
-            prompt : 'format NIM tidak valid'
-          }
-        ]
-      },
+<script>
+	$('.ui.form')
+		.form({
+			fields: {
+				name: {
+					identifier: 'search',
+					rules: [{
+						type: 'regExp[^[A-Ka-k][0-9]{8}$]',
+						prompt: 'format NIM tidak valid'
+					}]
+				},
 
-    }
-  })
-;
-        </script>
+			}
+		});
+</script>
 
-    </html>
+</html>
