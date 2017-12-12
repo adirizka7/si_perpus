@@ -77,7 +77,7 @@ def import_csv_process(request):
 				wr.writerow(list_sheet[k].row_values(rownum))
 
 		outcsvFile.close()
-		
+
 	return HttpResponseRedirect(reverse('polls:import_csv'))
 
 class Searched(generic.ListView):
@@ -87,14 +87,21 @@ class Searched(generic.ListView):
 		context = super(Searched, self).get_context_data(**kwargs)
 		skripsi = Skripsi.objects.filter(NIM__icontains=self.kwargs['nim'])
 		tesis = Tesis.objects.filter(NIM__icontains=self.kwargs['nim'])
+		pn = Penyerahan.objects.filter(NIM__icontains=self.kwargs['nim'])
 		if skripsi:
 			context['skripsi'] = skripsi[0].judul_IND
 		elif tesis:
 			context['tesis'] = tesis[0].judul_IND
-		mahasiswa = Mahasiswa.objects.get(NIM__icontains=self.kwargs['nim'])
+		try:
+			mahasiswa = Mahasiswa.objects.get(NIM__icontains=self.kwargs['nim'])
+		except Mahasiswa.DoesNotExist:
+			mahasiswa = None
 		buku = BukuS.objects.filter(penyumbang=mahasiswa)
 		if buku:
 			context['buku'] = buku[0].judul
+		if pn:
+			context['pnc'] = pn[0].s_cd
+			context['pna'] = pn[0].s_abstrak
 		return context
 	def get_queryset(self):
 		nim_argument = self.kwargs['nim']
@@ -116,6 +123,20 @@ def savedata_sumbangan(request, nim):
 		b.save()
 	return HttpResponseRedirect(reverse('polls:searched', args=[nim]))
 
+def savedata_cd(request, nim):
+	if request.POST:
+		cd=request.POST['cd']
+		if cd=='y':
+			pn = Penyerahan.objects.filter(NIM__icontains=nim).update(s_cd=1)
+	return HttpResponseRedirect(reverse('polls:searched', args=[nim]))
+
+def savedata_abstrak(request, nim):
+	if request.POST:
+		ab=request.POST['abs']
+		if ab=='y':
+			pn = Penyerahan.objects.filter(NIM__icontains=nim).update(s_abstrak=1)
+	return HttpResponseRedirect(reverse('polls:searched', args=[nim]))
+
 def savedata_skripsi(request):
 	if request.POST:
 		nama=request.POST['nama']
@@ -126,6 +147,8 @@ def savedata_skripsi(request):
 		else:
 			mv = Mahasiswa(nama = nama, NIM = nim, status = 0)
 			mv.save()
+			pn = Penyerahan(NIM = nim, s_abstrak = 0, s_cd = 0, buku=0)
+			pn.save()
 			sv = Skripsi(judul_IND=request.POST['IND'], judul_ENG=request.POST['ENG'], nama_penulis=nama, NIM=nim, pembimbing=request.POST['pembimbing'], penguji=request.POST['penguji'], tanggal_penyerahan=request.POST['tanggal'], tanggal_lulus=request.POST['lulus'],pub_date=timezone.now())
 			sv.save()
 	# return redirect()
@@ -141,6 +164,8 @@ def savedata_tesis(request):
 		else:
 			mv = Mahasiswa(nama = nama, NIM = nim, status = 0)
 			mv.save()
+			pn = Penyerahan(NIM = nim, s_abstrak = 0, s_cd = 0, buku=0)
+			pn.save()
 			sv = Tesis(judul_IND=request.POST['IND1'], judul_ENG=request.POST['ENG1'],  ps=request.POST['ps'], nama_penulis=nama, NIM=nim, pembimbing=request.POST['pembimbing1'], penguji=request.POST['penguji1'], tanggal_penyerahan=request.POST['tanggal1'], tanggal_lulus=request.POST['lulus1'],pub_date=timezone.now())
 			sv.save()
 	return HttpResponseRedirect(reverse('polls:tambah_data'))

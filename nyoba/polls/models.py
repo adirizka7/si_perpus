@@ -81,10 +81,13 @@ class Mahasiswa(models.Model):
 		return self.nama
 
 class Penyerahan(models.Model):
-	mahasiswa = models.ForeignKey(Mahasiswa, on_delete=models.CASCADE)
-	buku = models.ForeignKey(BukuS, on_delete=models.CASCADE)
+	NIM = models.CharField(max_length=200, default = 0)
+	buku = models.BooleanField()
 	s_abstrak = models.BooleanField()
 	s_cd = models.BooleanField()
 
 	class Meta:
 		db_table = u'polls_Penyerahan'
+
+	def __str__(self):
+		return self.NIM

@@ -3,7 +3,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.conf.urls import include
 from django.contrib.auth import views as auth_views
-    
+
 
 
 from . import views
@@ -23,6 +23,8 @@ urlpatterns = [
     url(r'^cek_status/cari/$', views.cari, name='cari'),
     url(r'^cek_status/(?P<nim>[a-zA-Z0-9_]+)/$', views.Searched.as_view(), name='searched'),
     url(r'^cek_status/(?P<nim>[a-zA-Z0-9_]+)/buku_sumbangan/$', views.savedata_sumbangan, name='buku_sumbangan'),
+    url(r'^cek_status/(?P<nim>[a-zA-Z0-9_]+)/cd/$', views.savedata_cd, name='cdyn'),
+    url(r'^cek_status/(?P<nim>[a-zA-Z0-9_]+)/abstrak/$', views.savedata_abstrak, name='abstrakyn'),
     #url(r'^updatedata/$', views.crud.updatedata, name='updatedata'),
     #url(r'^([0-9]+)/editdata/$', views.crud.editdata, name='editdata'),
     #url(r'^([0-9]+)/deletedata/$', views.crud.deletedata, name='deletedata'),

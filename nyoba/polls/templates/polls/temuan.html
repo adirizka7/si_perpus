@@ -46,6 +46,8 @@
 				<p><a href="/tambah_data">Anda bisa menambahkan data di sini</a></p>
 			</div>
 
+			<!-- Tabel Mahasiswa-->
+
 			{% endif %} {% for g in searcheded %}
 
 			<table class="ui very basic collapsing celled center aligned table" style="padding-top:6%">
@@ -88,18 +90,31 @@
 						{{skripsi}}
 					</div>
 					{% else %}
-					<i class="large red checkmark icon"></i> {% endif %}
+					<i class="large red remove icon"></i> {% endif %}
 					<!--<i class="large green checkmark icon"></i>-->
 				</td>
 				<!-- SKripsi -->
 
 				<td class="center aligned">
-					<i class="large green checkmark icon"></i>
+					<!-- <i class="large green checkmark icon"></i>-->
+					{% if pna != 1 %}
+					<div class="content">
+						<i class="large red remove icon">
+					</div>
+					{% else %}
+					<i class="large green checkmark icon"></i> {% endif %}
 				</td>
 				<!-- abstrak -->
 
 				<td class="center aligned">
-					<i class="large green checkmark icon"></i>
+					<!--<i class="large green checkmark icon"></i>-->
+					{% if pnc != 1 %}
+					<div class="content">
+						<i class="large red remove icon">
+					</div>
+					{% else %}
+					<i class="large green checkmark icon"></i> {% endif %}
+					</div>
 				</td>
 				<!-- cd -->
 
@@ -116,9 +131,33 @@
 		</tbody>
 		</table>
 
+		<!-- Tabel Mahasiswa ends here -->
+
 		<h2><a href="#">Edit entri</a></h2>
 
+		</br>
+		<!-- Form CD Abstrak -->
+		{% if pnc != 1 %}
+		<h3><a href="#">Mahasiswa sudah menyerahkan CD?</a></h3>
+		<form action="{% url 'polls:cdyn' nim=g.NIM %}" method="post">
+			{% csrf_token %}
+			<input type="radio" name="cd" value="y" required/> Ya
+			<input type="radio" name="cd" value="n" /> Tidak
+			<button class="ui button" type="submit">Submit</button>
+		</form>
+		</br>
+		{% endif %} {% if pna != 1 %}
+		<h3><a href="#">Mahasiswa sudah menyerahkan Abstrak?</a></h3>
+		<form action="{% url 'polls:abstrakyn' nim=g.NIM %}" method="post">
+			{% csrf_token %}
+			<input type="radio" name="abs" value="y" required/> Ya
+			<input type="radio" name="abs" value="n" /> Tidak
+			<button class="ui button" type="submit">Submit</button>
+		</form>
+		{% endif %}
+		<!-- Form CD Abstrak ends here -->
 
+		<!-- Form Buku Sumbangan -->
 
 		<h1 class="ui Left aligned header" style="padding-top:6%">Buku Sumbangan</h1>
 		<form class="ui form" method="POST" action="{% url 'polls:buku_sumbangan' nim=g.NIM %}">
@@ -138,32 +177,32 @@
 			<button class="ui button" type="submit">Submit</button>
 		</form>
 
-
+		<!-- Form Buku Sumbangan ends here-->
 
 		{% endfor %}
-	</div>
-	<script>
-		$('.message .close')
-			.on('click', function() {
-				$(this)
-					.closest('.message')
-					.transition('fade');
-			});
+		</div>
+		<script>
+			$('.message .close')
+				.on('click', function() {
+					$(this)
+						.closest('.message')
+						.transition('fade');
+				});
 
-		$('.ui.form')
-			.form({
-				fields: {
-					name: {
-						identifier: 'tah',
-						rules: [{
-							type: 'regExp[^[0-9]{4}$]',
-							prompt: 'format NIM tidak valid'
-						}]
-					},
+			$('.ui.form')
+				.form({
+					fields: {
+						name: {
+							identifier: 'tah',
+							rules: [{
+								type: 'regExp[^[0-9]{4}$]',
+								prompt: 'format NIM tidak valid'
+							}]
+						},
 
-				}
-			});
-	</script>
+					}
+				});
+		</script>
 </body>
 
 
