@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.template import loader
 from django.shortcuts import get_object_or_404, render, redirect
 from django.core.validators import RegexValidator
+from django.contrib import messages
 
 from django.http import Http404
 from django.urls import reverse
@@ -212,4 +213,5 @@ def savedata_pinjam(request):
 		tg=request.POST['tanggal']
 		pm=Peminjaman(nama=nama,NIM=nim,judul=judul,phone=phone,barcode=barcode,pengarang=pengarang,tanggal_pinjam=timezone.now(),tanggal_kembali=tg,pub_date=timezone.now())
 		pm.save()
+		messages.success(request, 'Form submission successful')
 	return HttpResponseRedirect(reverse('polls:pinjam'))
