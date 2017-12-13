@@ -39,14 +39,21 @@
 	</div>
 
 
-	<h1 class="ui center aligned header" style="padding-top:6%">Tambah Syarat</h1>
+	<h1 class="ui center aligned header" style="padding-top:6%">Tambah Data</h1>
 
 	<div class="ui text container">
-
+		<div class="ui center aligned container">
+			<div class="ui large  buttons">
+			  <button class="ui button skripsi_btn" onclick="skripsi()">Skripsi</button>
+			  <div class="or"></div>
+			  <button class="ui button tesis_btn" onclick="tesis()">Tesis</button>
+			</div>
+		</div>
 
 		<!--  -->
-		<h1 class="ui Left aligned header" style="padding-top:6%">Skripsi</h1>
-		<form class="ui form" method="POST" action="{% url 'polls:skripsi' %}">
+		
+		<form class="ui form skripsi_form" method="POST" action="{% url 'polls:skripsi' %}">
+			<h1 class="ui Left aligned header" style="padding-top:6%">Skripsi</h1>
 			{% csrf_token %}
 
 			<div class="field">
@@ -86,8 +93,9 @@
 			<button class="ui teal button" type="submit">Submit</button>
 		</form>
 
-		<h1 class="ui Left aligned header" style="padding-top:6%">Tesis</h1>
-		<form class="ui form" method="POST" action="{% url 'polls:tesis' %}">
+		
+		<form class="ui form tesis_form" method="POST" action="{% url 'polls:tesis' %}">
+			<h1 class="ui Left aligned header" style="padding-top:6%">Tesis</h1>
 			{% csrf_token %}
 			<div class="field">
 				<label>Nama</label>
@@ -134,6 +142,9 @@
 	</div>
 
 	<script>
+		skripsi();
+		$(".skripsi_btn").toggleClass('positive');
+
 		$('.ui.checkbox')
 			.checkbox();
 		$('select.dropdown')
@@ -156,6 +167,25 @@
 		$('#example2').calendar({
 			type: 'date'
 		});
+
+		function tesis(){
+			$(".skripsi_form").hide();
+			$(".tesis_form").show();
+			if($(".skripsi_btn").hasClass('positive')){
+			    $(".tesis_btn").toggleClass('positive');
+			    $(".skripsi_btn").toggleClass('positive');
+			}		
+		}
+		function skripsi(){
+			$(".skripsi_form").show();
+			$(".tesis_form").hide();
+		    $(".skripsi_btn").toggleClass('positive');
+		    $(".tesis_btn").toggleClass('positive');	
+			if($(".tesis_btn").hasClass('positive')){
+			    $(".tesis_btn").toggleClass('positive');
+			    $(".skripsi_btn").toggleClass('positive');
+			}		
+		}
 	</script>
 </body>
 
