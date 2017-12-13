@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^rekap_data_tesis/$', views.rekap_data_tesis.as_view(), name='rekap_data_tesis'),
     url(r'^import_csv/$', views.import_csv.as_view(), name='import_csv'),
     url(r'^import_csv/proc$', views.import_csv_process, name='import_csv_process'),
+    url(r'^import_csv/get$', views.import_csv_get, name='import_csv_get'),
     url(r'^cek_status/$', views.cek_status.as_view(), name='cek_status'),
     url(r'^cek_status/cari/$', views.cari, name='cari'),
     url(r'^cek_status/kembali/(?P<nim>[a-zA-Z0-9_]+)/(?P<id>[a-zA-Z0-9_]+)/$', views.sudah_mengembalikan, name='sudah_mengembalikan'),

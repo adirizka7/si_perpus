@@ -12,6 +12,9 @@ from django.views import generic
 from django.utils import timezone
 from django.core import serializers
 from django.conf import settings
+from django.utils.encoding import smart_str
+
+from django.views.static import serve
 
 import os
 
@@ -102,6 +105,29 @@ def import_csv_process(request):
 		outcsvFile.close()
 
 	return HttpResponseRedirect(reverse('polls:import_csv'))
+
+def import_csv_get(request):
+	tipe = request.GET['tipe']
+	print(tipe)
+	import sqlite3
+	# tinggal ambil database sesuai nama tipe
+	connection = sqlite3.connect("db.sqlite3")
+
+	with open("temp/"+"Mahasiswa.csv", "w") as write_file:
+	    cursor = connection.cursor()
+	    for row in cursor.execute("SELECT * FROM polls_Mahasiswa"):
+	        writeRow = ",".join(str(v) for v in row)
+	        write_file.write(writeRow)
+	        write_file.write("\n")
+
+	file_path = os.getcwd()+'/temp/Mahasiswa.csv'
+	if os.path.exists(file_path):
+		with open(file_path, 'rb') as fh:
+			response = HttpResponse(fh.read(), content_type="text/csv")
+			response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+			return response
+
+
 
 class Searched(generic.ListView):
 	template_name = 'polls/temuan.html'
