@@ -37,6 +37,14 @@
                     </a>
 		</div>
 
+		{% if messages %}
+		<div class="ui floating message">
+			{% for message in messages %}
+			<li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+				{% endfor %}
+		</div>
+		{% endif %}
+
 		<h1 class="ui center aligned header" style="padding-top:6%;padding-bottom:2%">Cek Status Mahasiswa</h1>
 
 		<div class="ui center aligned text container">
@@ -208,6 +216,15 @@
 
 	<div id="div_aku">
 		</br>
+
+		<h3><a href="#">Mahasiswa sudah menyerahkan Abstrak?</a></h3>
+		<form action="{% url 'polls:abstrakyn' nim=g.NIM %}" method="post">
+			{% csrf_token %}
+			<input type="radio" name="abs" value="y" required/> Ya
+			<input type="radio" name="abs" value="n" /> Tidak
+			<button class="ui button" type="submit">Submit</button>
+		</form>
+
 		<!-- Form CD Abstrak -->
 
 		<h3><a href="#">Mahasiswa sudah menyerahkan CD?</a></h3>
@@ -218,14 +235,6 @@
 			<button class="ui button" type="submit">Submit</button>
 		</form>
 		</br>
-
-		<h3><a href="#">Mahasiswa sudah menyerahkan Abstrak?</a></h3>
-		<form action="{% url 'polls:abstrakyn' nim=g.NIM %}" method="post">
-			{% csrf_token %}
-			<input type="radio" name="abs" value="y" required/> Ya
-			<input type="radio" name="abs" value="n" /> Tidak
-			<button class="ui button" type="submit">Submit</button>
-		</form>
 
 		<!-- Form CD Abstrak ends here -->
 
@@ -254,6 +263,7 @@
 
 	<script>
 		fungsi();
+
 		function fungsi() {
 			var x = document.getElementById("div_aku");
 			if (x.style.display === "none") {

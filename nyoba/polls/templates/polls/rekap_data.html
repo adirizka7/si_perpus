@@ -6,14 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.min.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'tables/dataTables.semanticui.min.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'tables/jquery.dataTables.min.css' %}"> 
+  <link rel="stylesheet" type="text/css" href="{% static 'tables/jquery.dataTables.min.css' %}">
   <script src="{% static 'jquery/jquery-3.1.1.min.js' %}"></script>
   <script src="{% static 'semantic/semantic.min.js' %}"></script>
   <script src="{% static 'tables/jquery.dataTables.min.js' %}"></script>
-<script src="{% static 'tables/dataTables.semanticui.min.js' %}"></script>
-  
+  <script src="{% static 'tables/dataTables.semanticui.min.js' %}"></script>
 
-  
+
+
 
   <title>Rekap Data</title>
 
@@ -55,9 +55,9 @@
     <div style="padding-bottom:4%">
       <button class="ui disabled button">Rekap Peminjaman Buku</button>
       <button class="ui button" onclick="location.href='/rekap_data_skripsi'">Rekap skripsi</button>
-      <button class="ui button" onclick="location.href='/rekap_data_tesis'"">Rekap tesis</button>
+      <button class="ui button" onclick="location.href='/rekap_data_tesis'">Rekap tesis</button>
     </div>
-    <table id="rekap" class="ui celled table" cellspacing="0" width="100%">
+    <table id="rekap" class="ui celled table " cellspacing="0 " width="100% ">
       <thead>
         <tr>
           <th>NIM</th>
@@ -68,6 +68,7 @@
           <th>Tanggal Pinjam</th>
           <th>Tanggal Kembali Seharusnya</th>
           <th>Tanggal Kembali Asli</th>
+          <th>Status Pengembalian</th>
         </tr>
       </thead>
       <tbody>
@@ -81,6 +82,11 @@
           <td>{{p.tanggal_pinjam}}</td>
           <td>{{p.tanggal_kembali}}</td>
           <td>{{p.tanggal_kembali_riil}}</td>
+          {% if p.status == 0 %}
+          <td>Belum Dikembalikan</td>
+          {% else %}
+          <td>Sudah Dikembalikan</td>
+          {% endif %}
         </tr>
         {% endfor %}
 
@@ -90,10 +96,10 @@
 
   </div>
 
-  <script type="text/javascript">
+  <script type="text/javascript ">
     $(document).ready(function() {
       $('#rekap').DataTable();
-  } );
+    });
   </script>
 
 </body>
