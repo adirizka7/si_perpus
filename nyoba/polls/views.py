@@ -169,7 +169,7 @@ def sudah_mengembalikan(request, nim, id):
 
 def savedata_cd(request, nim):
 	if request.POST:
-		if Penyerahan.objects.filter(NIM__icontains=nim).exist():
+		if Penyerahan.objects.filter(NIM__icontains=nim).exists():
 			pass
 		else:
 			pn = Penyerahan(NIM = nim, s_abstrak = 0, s_cd = 0, buku=0)
@@ -183,7 +183,7 @@ def savedata_cd(request, nim):
 
 def savedata_abstrak(request, nim):
 	if request.POST:
-		if Penyerahan.objects.filter(NIM__icontains=nim).exist():
+		if Penyerahan.objects.filter(NIM__icontains=nim).exists():
 			pass
 		else:
 			pn = Penyerahan(NIM = nim, s_abstrak = 0, s_cd = 0, buku=0)
