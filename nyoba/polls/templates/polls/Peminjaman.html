@@ -40,7 +40,7 @@
   </div>
 
   {% if messages %}
-  <div class="messages">
+  <div class="ui floating message">
     {% for message in messages %}
     <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
       {% endfor %}
@@ -81,6 +81,7 @@
         <input type="date" name="tanggal" placeholder="Bulan/Hari/Tahun" required>
       </div>
       <button class="ui teal button" type="submit">Submit</button>
+      <div class="ui error message"></div>
     </form>
   </div>
 
@@ -100,7 +101,14 @@
             type: 'regExp[^[0-9]{7,15}$]',
             prompt: 'format nomor tidak valid'
           }]
-        }
+        },
+        tralala: {
+          identifier: 'tanggal',
+          rules: [{
+            type: 'empty',
+            prompt: 'format tanggal tidak valid'
+          }]
+        },
       });
   </script>
 

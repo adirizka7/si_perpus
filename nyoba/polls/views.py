@@ -133,6 +133,7 @@ def savedata_sumbangan(request, nim):
 		name = m[0].nama
 		b = BukuS(judul = judul, nama_penulis = penulis, pub_date = tahun, penyumbang = name)
 		b.save()
+		messages.success(request, 'Form submission successful')
 	return HttpResponseRedirect(reverse('polls:searched', args=[nim]))
 
 def sudah_mengembalikan(request, nim, id):
@@ -149,6 +150,7 @@ def sudah_mengembalikan(request, nim, id):
 			jm.status=1
 			jm.tanggal_kembali_riil=timezone.now()
 			jm.save()
+		messages.success(request, 'Data Berhasil di update')
 	return HttpResponseRedirect(reverse('polls:searched', args=[nim]))
 
 def savedata_cd(request, nim):
@@ -183,7 +185,7 @@ def savedata_skripsi(request):
 			pn.save()
 			sv = Skripsi(judul_IND=request.POST['IND'], judul_ENG=request.POST['ENG'], nama_penulis=nama, NIM=nim, pembimbing=request.POST['pembimbing'], penguji=request.POST['penguji'], tanggal_penyerahan=request.POST['tanggal'], tanggal_lulus=request.POST['lulus'],pub_date=timezone.now())
 			sv.save()
-	# return redirect()
+		messages.success(request, 'Form submission successful')
 	return HttpResponseRedirect(reverse('polls:tambah_data'))
 
 def savedata_tesis(request):
@@ -200,6 +202,7 @@ def savedata_tesis(request):
 			pn.save()
 			sv = Tesis(judul_IND=request.POST['IND1'], judul_ENG=request.POST['ENG1'],  ps=request.POST['ps'], nama_penulis=nama, NIM=nim, pembimbing=request.POST['pembimbing1'], penguji=request.POST['penguji1'], tanggal_penyerahan=request.POST['tanggal1'], tanggal_lulus=request.POST['lulus1'],pub_date=timezone.now())
 			sv.save()
+		messages.success(request, 'Form submission successful')
 	return HttpResponseRedirect(reverse('polls:tambah_data'))
 
 def savedata_pinjam(request):

@@ -38,23 +38,30 @@
 		</div>
 	</div>
 
+	{% if messages %}
+	<div class="ui floating message">
+		{% for message in messages %}
+		<li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+			{% endfor %}
+	</div>
+	{% endif %}
+
 
 	<h1 class="ui center aligned header" style="padding-top:6%">Tambah Data</h1>
 
 	<div class="ui text container">
 		<div class="ui center aligned container">
 			<div class="ui large  buttons">
-			  <button class="ui button skripsi_btn" onclick="skripsi()">Skripsi</button>
-			  <div class="or"></div>
-			  <button class="ui button tesis_btn" onclick="tesis()">Tesis</button>
+				<button class="ui button skripsi_btn" onclick="skripsi()">Skripsi</button>
+				<div class="or"></div>
+				<button class="ui button tesis_btn" onclick="tesis()">Tesis</button>
 			</div>
 		</div>
 
 		<!--  -->
-		
+
 		<form class="ui form skripsi_form" method="POST" action="{% url 'polls:skripsi' %}">
-			<h1 class="ui Left aligned header" style="padding-top:6%">Skripsi</h1>
-			{% csrf_token %}
+			<h1 class="ui Left aligned header" style="padding-top:6%">Skripsi</h1> {% csrf_token %}
 
 			<div class="field">
 				<label>Nama</label>
@@ -91,12 +98,12 @@
 			<div class="field">
 			</div>
 			<button class="ui teal button" type="submit">Submit</button>
+			<div class="ui error message"></div>
 		</form>
 
-		
+
 		<form class="ui form tesis_form" method="POST" action="{% url 'polls:tesis' %}">
-			<h1 class="ui Left aligned header" style="padding-top:6%">Tesis</h1>
-			{% csrf_token %}
+			<h1 class="ui Left aligned header" style="padding-top:6%">Tesis</h1> {% csrf_token %}
 			<div class="field">
 				<label>Nama</label>
 				<input type="text" name="nama1" placeholder="Nama" required>
@@ -137,6 +144,7 @@
 			<div class="field">
 			</div>
 			<button class="ui teal button" type="submit">Submit</button>
+			<div class="ui error message"></div>
 		</form>
 
 	</div>
@@ -153,38 +161,43 @@
 			.accordion();
 		$('.ui.form')
 			.form({
-				fields: {
-					name: {
-						identifier: 'nim',
-						rules: [{
-							type: 'regExp[^[a-kA-K][0-9]+$]',
-							prompt: 'format NIM tidak valid'
-						}]
-					},
-
-				}
+				name: {
+					identifier: 'nim',
+					rules: [{
+						type: 'regExp[^[a-kA-K][0-9]+$]',
+						prompt: 'format NIM tidak valid'
+					}]
+				},
+				name1: {
+					identifier: 'nim1',
+					rules: [{
+						type: 'regExp[^[a-kA-K][0-9]+$]',
+						prompt: 'format NIM tidak valid'
+					}]
+				},
 			});
 		$('#example2').calendar({
 			type: 'date'
 		});
 
-		function tesis(){
+		function tesis() {
 			$(".skripsi_form").hide();
 			$(".tesis_form").show();
-			if($(".skripsi_btn").hasClass('positive')){
-			    $(".tesis_btn").toggleClass('positive');
-			    $(".skripsi_btn").toggleClass('positive');
-			}		
+			if ($(".skripsi_btn").hasClass('positive')) {
+				$(".tesis_btn").toggleClass('positive');
+				$(".skripsi_btn").toggleClass('positive');
+			}
 		}
-		function skripsi(){
+
+		function skripsi() {
 			$(".skripsi_form").show();
 			$(".tesis_form").hide();
-		    $(".skripsi_btn").toggleClass('positive');
-		    $(".tesis_btn").toggleClass('positive');	
-			if($(".tesis_btn").hasClass('positive')){
-			    $(".tesis_btn").toggleClass('positive');
-			    $(".skripsi_btn").toggleClass('positive');
-			}		
+			$(".skripsi_btn").toggleClass('positive');
+			$(".tesis_btn").toggleClass('positive');
+			if ($(".tesis_btn").hasClass('positive')) {
+				$(".tesis_btn").toggleClass('positive');
+				$(".skripsi_btn").toggleClass('positive');
+			}
 		}
 	</script>
 </body>
