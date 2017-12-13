@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.min.css' %}">
   <script src="{% static 'jquery/jquery-3.1.1.min.js' %}"></script>
   <script src="{% static 'semantic/semantic.min.js' %}"></script>
-  <title> Cek status</title>
+  <title>Rekap Data</title>
 
 </head>
 
@@ -38,11 +38,52 @@
     </div>
   </div>
 
-  <h1 class="ui center aligned header" style="padding-top:6%">Cek Status Mahasiswa</h1>
+  <h1 class="ui center aligned header" style="padding:2%">Rekap Data</h1>
+
+  <div class="ui center aligned text container">
+  <button>Rekap Peminjaman Buku</button>
+  <button>Rekap Penyerahan skripsi/tesis</button>
+  
+    <!-- 
+    <h3>Tampilkan Berdasarkan:</h3>
+    <button class="ui pink button">Bulan</button>
+    <button class="ui pink button">Tanggal</button>
+     -->
+    <table class="ui striped table">
+  <thead>
+    <tr>
+      <th>NIM</th>
+      <th>Nama</th>
+      <th>Skripsi</th>
+      <th>Abstrak</th>
+      <th>CD</th>
+      <th>Buku Sumabgan</th>
+      <th>Tanggal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>G64150099</td>
+      <td>John Lilki</td>
+      <td>ya</td>
+      <td>ya</td>
+      <td>ya</td>
+      <td>ya</td>
+      <td>1 / 1 / 2017</td>
+    </tr>
+    <tr>
+      <td>G64150019</td>
+      <td>Jamie Harington</td>
+      <td>ya</td>
+      <td>ya</td>
+      <td class="negative">tidak</td>
+      <td>ya</td>
+      <td>12/ 2 / 2017</td>
+    </tr>
+  </tbody>
+</table> 
 
 
-  <div class="ui center aligned text container" style="padding:5%">
-    Dari .. Ke ..
   </div>
 
 
