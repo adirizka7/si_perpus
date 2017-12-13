@@ -101,9 +101,9 @@
 				<td class="center aligned">
 					<!-- <i class="large green checkmark icon"></i>-->
 					{% if pna != 1 %}
-					<div class="content">
+					<!-- <div class="content"> -->
 						<i class="large red remove icon">
-					</div>
+					<!-- </div> -->
 					{% else %}
 					<i class="large green checkmark icon"></i> {% endif %}
 				</td>
@@ -112,9 +112,9 @@
 				<td class="center aligned">
 					<!--<i class="large green checkmark icon"></i>-->
 					{% if pnc != 1 %}
-					<div class="content">
+					<!-- <div class="content"> -->
 						<i class="large red remove icon">
-					</div>
+					<!-- </div> -->
 					{% else %}
 					<i class="large green checkmark icon"></i> {% endif %}
 					</div>
@@ -188,51 +188,65 @@
 
 		<!-- Tabel Mahasiswa ends here -->
 
-		<h2><a href="#">Edit entri</a></h2>
+		<!-- <h2><a href="#">Edit entri</a></h2> -->
+		<button class="ui blue button" onclick="fungsi()">Edit Entri</button>
 
-		</br>
-		<!-- Form CD Abstrak -->
-		{% if pnc != 1 %}
-		<h3><a href="#">Mahasiswa sudah menyerahkan CD?</a></h3>
-		<form action="{% url 'polls:cdyn' nim=g.NIM %}" method="post">
-			{% csrf_token %}
-			<input type="radio" name="cd" value="y" required/> Ya
-			<input type="radio" name="cd" value="n" /> Tidak
-			<button class="ui button" type="submit">Submit</button>
-		</form>
-		</br>
-		{% endif %} {% if pna != 1 %}
-		<h3><a href="#">Mahasiswa sudah menyerahkan Abstrak?</a></h3>
-		<form action="{% url 'polls:abstrakyn' nim=g.NIM %}" method="post">
-			{% csrf_token %}
-			<input type="radio" name="abs" value="y" required/> Ya
-			<input type="radio" name="abs" value="n" /> Tidak
-			<button class="ui button" type="submit">Submit</button>
-		</form>
-		{% endif %}
-		<!-- Form CD Abstrak ends here -->
+		<div id="div_aku">
+			</br>
+			<!-- Form CD Abstrak -->
+			
+			<h3><a href="#">Mahasiswa sudah menyerahkan CD?</a></h3>
+			<form action="{% url 'polls:cdyn' nim=g.NIM %}" method="post">
+				{% csrf_token %}
+				<input type="radio" name="cd" value="y" required/> Ya
+				<input type="radio" name="cd" value="n" /> Tidak
+				<button class="ui button" type="submit">Submit</button>
+			</form>
+			</br>
+			
+			<h3><a href="#">Mahasiswa sudah menyerahkan Abstrak?</a></h3>
+			<form action="{% url 'polls:abstrakyn' nim=g.NIM %}" method="post">
+				{% csrf_token %}
+				<input type="radio" name="abs" value="y" required/> Ya
+				<input type="radio" name="abs" value="n" /> Tidak
+				<button class="ui button" type="submit">Submit</button>
+			</form>
+			
+			<!-- Form CD Abstrak ends here -->
 
-		<!-- Form Buku Sumbangan -->
+			<!-- Form Buku Sumbangan -->
 
-		<h1 class="ui Left aligned header" style="padding-top:6%">Buku Sumbangan</h1>
-		<form class="ui form" method="POST" action="{% url 'polls:buku_sumbangan' nim=g.NIM %}">
-			{% csrf_token %}
-			<div class="field">
-				<label>Judul</label>
-				<input type="text" name="judul" placeholder="Judul" required>
-			</div>
-			<div class="field">
-				<label>Penulis</label>
-				<input type="text" name="penulis" placeholder="Penulis" required>
-			</div>
-			<div class="field">
-				<label>Tahun Keluaran</label>
-				<input type="text" name="tahun" placeholder="Tahun(4 angka)" required>
-			</div>
-			<button class="ui button" type="submit">Submit</button>
-		</form>
+			<h1 class="ui Left aligned header" style="padding-top:6%">Buku Sumbangan</h1>
+			<form class="ui form" method="POST" action="{% url 'polls:buku_sumbangan' nim=g.NIM %}">
+				{% csrf_token %}
+				<div class="field">
+					<label>Judul</label>
+					<input type="text" name="judul" placeholder="Judul" required>
+				</div>
+				<div class="field">
+					<label>Penulis</label>
+					<input type="text" name="penulis" placeholder="Penulis" required>
+				</div>
+				<div class="field">
+					<label>Tahun Keluaran</label>
+					<input type="text" name="tahun" placeholder="Tahun(4 angka)" required>
+				</div>
+				<button class="ui button" type="submit">Submit</button>
+			</form>
+		</div>
 
 		<!-- Form Buku Sumbangan ends here-->
+
+		<script>
+			function fungsi() {
+				var x = document.getElementById("div_aku");
+			    if (x.style.display === "none") {
+			        x.style.display = "block";
+			    } else {
+			        x.style.display = "none";
+			    }
+			}
+		</script>
 
 		{% endfor %}
 		</div>

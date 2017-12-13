@@ -137,6 +137,8 @@ def savedata_cd(request, nim):
 		cd=request.POST['cd']
 		if cd=='y':
 			pn = Penyerahan.objects.filter(NIM__icontains=nim).update(s_cd=1)
+		elif cd=='n':
+			pn = Penyerahan.objects.filter(NIM__icontains=nim).update(s_cd=0)
 	return HttpResponseRedirect(reverse('polls:searched', args=[nim]))
 
 def savedata_abstrak(request, nim):
@@ -144,6 +146,8 @@ def savedata_abstrak(request, nim):
 		ab=request.POST['abs']
 		if ab=='y':
 			pn = Penyerahan.objects.filter(NIM__icontains=nim).update(s_abstrak=1)
+		elif ab=='n':
+			pn = Penyerahan.objects.filter(NIM__icontains=nim).update(s_abstrak=0)
 	return HttpResponseRedirect(reverse('polls:searched', args=[nim]))
 
 def savedata_skripsi(request):
