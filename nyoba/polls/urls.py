@@ -3,10 +3,13 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.conf.urls import include
 from django.contrib.auth import views as auth_views
-
+from django.contrib.auth.decorators import login_required
+    
 
 
 from . import views
+
+## login - tinggal panggil login_required() di page yang diinginkan
 
 app_name = 'polls'
 urlpatterns = [

@@ -20,6 +20,7 @@ class home(generic.ListView):
 	model = Mahasiswa
 	template_name = 'polls/home.html'
 
+
 class pinjam(generic.ListView):
 	model = Peminjaman
 	template_name = 'polls/Peminjaman.html'
