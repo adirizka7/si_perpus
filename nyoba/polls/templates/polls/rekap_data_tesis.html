@@ -76,9 +76,9 @@
       <tbody>
         {% for p in rekap_tesis %}
         <tr>
-          <td>{{p.NIM}}</td>
+          <td>{{p.NIM.upper}}</td>
           <td>{{p.nama_penulis}}</td>
-          <td>{{p.ps}}</td>
+          <td>{{p.ps.upper}}</td>
           <td>{{p.judul_IND}}</td>
           <td>{{p.judul_ENG}}</td>
           <td>{{p.pembimbing}}</td>
