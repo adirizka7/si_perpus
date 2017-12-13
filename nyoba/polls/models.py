@@ -61,7 +61,7 @@ class Peminjaman(models.Model):
 	tanggal_pinjam = models.DateTimeField(null=True, blank=True)
 	tanggal_kembali = models.DateTimeField(null=True, blank=True)
 	tanggal_kembali_riil = models.DateTimeField(null=True, blank=True)
-	status = models.BooleanField()
+	status = models.BooleanField(default=0)
 	pub_date = models.DateTimeField(default=timezone.now())
 
 	class Meta:

@@ -41,47 +41,43 @@
   <h1 class="ui center aligned header" style="padding:2%">Rekap Data</h1>
 
   <div class="ui center aligned text container">
-  <button>Rekap Peminjaman Buku</button>
-  <button>Rekap Penyerahan skripsi/tesis</button>
-  
-    <!-- 
+    <button>Rekap Peminjaman Buku</button>
+    <button>Rekap Penyerahan skripsi/tesis</button>
+
+    <!--
     <h3>Tampilkan Berdasarkan:</h3>
     <button class="ui pink button">Bulan</button>
     <button class="ui pink button">Tanggal</button>
      -->
     <table class="ui striped table">
-  <thead>
-    <tr>
-      <th>NIM</th>
-      <th>Nama</th>
-      <th>Skripsi</th>
-      <th>Abstrak</th>
-      <th>CD</th>
-      <th>Buku Sumabgan</th>
-      <th>Tanggal</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>G64150099</td>
-      <td>John Lilki</td>
-      <td>ya</td>
-      <td>ya</td>
-      <td>ya</td>
-      <td>ya</td>
-      <td>1 / 1 / 2017</td>
-    </tr>
-    <tr>
-      <td>G64150019</td>
-      <td>Jamie Harington</td>
-      <td>ya</td>
-      <td>ya</td>
-      <td class="negative">tidak</td>
-      <td>ya</td>
-      <td>12/ 2 / 2017</td>
-    </tr>
-  </tbody>
-</table> 
+      <thead>
+        <tr>
+          <th>NIM</th>
+          <th>Nama</th>
+          <th>Judul Buku</th>
+          <th>Nomor Hp</th>
+          <th>Barcode</th>
+          <th>Tanggal Pinjam</th>
+          <th>Tanggal Kembali Seharusnya</th>
+          <th>Tanggal Kembali Asli</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for p in rekap_pinjaman %}
+        <tr>
+          <td>{{p.NIM}}</td>
+          <td>{{p.nama}}</td>
+          <td>{{p.judul}}</td>
+          <td>{{p.phone}}</td>
+          <td>{{p.barcode}}</td>
+          <td>{{p.tanggal_pinjam}}</td>
+          <td>{{p.tanggal_kembali}}</td>
+          <td>{{p.tanggal_kembali_riil}}</td>
+        </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
 
 
   </div>

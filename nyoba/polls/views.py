@@ -24,7 +24,6 @@ class pinjam(generic.ListView):
 	model = Peminjaman
 	template_name = 'polls/Peminjaman.html'
 
-
 class login(generic.ListView):
 	model = Mahasiswa
 	template_name = 'polls/login.html'
@@ -45,8 +44,11 @@ class tambah_data(generic.ListView):
 		return Mahasiswa.objects.all()
 
 class rekap_data(generic.ListView):
-	model = Mahasiswa
+	model = Peminjaman
 	template_name = 'polls/rekap_data.html'
+	context_object_name = 'rekap_pinjaman'
+	def get_queryset(self):
+		return Peminjaman.objects.all().order_by("id")
 
 class import_csv(generic.ListView):
 	model = Mahasiswa
@@ -140,9 +142,11 @@ def sudah_mengembalikan(request, nim, id):
 			jm = None
 		if jm:
 			jm.status=1
+			jm.tanggal_kembali_riil=timezone.now()
 			jm.save()
 		else:
 			jm.status=1
+			jm.tanggal_kembali_riil=timezone.now()
 			jm.save()
 	return HttpResponseRedirect(reverse('polls:searched', args=[nim]))
 
