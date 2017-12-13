@@ -5,11 +5,22 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'tables/dataTables.semanticui.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'tables/jquery.dataTables.min.css' %}"> 
   <script src="{% static 'jquery/jquery-3.1.1.min.js' %}"></script>
   <script src="{% static 'semantic/semantic.min.js' %}"></script>
+  <script src="{% static 'tables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'tables/dataTables.semanticui.min.js' %}"></script>
+  
+
+  
+
   <title>Rekap Data</title>
 
+
+
 </head>
+
 
 <body>
   <div class="ui  container">
@@ -49,7 +60,7 @@
     <button class="ui pink button">Bulan</button>
     <button class="ui pink button">Tanggal</button>
      -->
-    <table class="ui striped table">
+    <table id="rekap" class="ui celled table" cellspacing="0" width="100%">
       <thead>
         <tr>
           <th>NIM</th>
@@ -82,6 +93,11 @@
 
   </div>
 
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#rekap').DataTable();
+  } );
+  </script>
 
 </body>
 
