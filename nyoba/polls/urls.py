@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^Peminjaman/$', views.pinjam.as_view(), name='pinjam'),
     url(r'^Peminjaman/savedata_pinjam/$', views.savedata_pinjam, name='savedata_pinjam'),
     url(r'^rekap_data/$', views.rekap_data.as_view(), name='rekap_data'),
+    url(r'^rekap_data/(?P<id>[a-zA-Z0-9_]+)/$', views.rekapsm, name='rekap_data_simpan'),
     url(r'^rekap_data_skripsi/$', views.rekap_data_skripsi.as_view(), name='rekap_data_skripsi'),
     url(r'^rekap_data_tesis/$', views.rekap_data_tesis.as_view(), name='rekap_data_tesis'),
     url(r'^import_csv/$', views.import_csv.as_view(), name='import_csv'),
