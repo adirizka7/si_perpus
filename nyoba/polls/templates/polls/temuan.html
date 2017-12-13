@@ -134,6 +134,58 @@
 		</tbody>
 		</table>
 
+		{% if jm %}
+
+		<table>
+			<thead>
+				<tr>
+					<th>Judul</th>
+					<th>Barcode</th>
+					<th>No. Hp</th>
+					<th>Pengarang</th>
+					<th>Tanggal Pinjam</th>
+					<th>Tanggal Kembali Seharusnya</th>
+				</tr>
+			</thead>
+			{% for pinjam in jm %}
+			<tbody>
+				<tr>
+					<td>
+						<div class="content">
+							{{pinjam.judul}}
+						</div>
+					</td>
+					<td>
+						<div class="content">
+							{{pinjam.barcode}}
+						</div>
+					</td>
+					<td>
+						<div class="content">
+							{{pinjam.phone}}
+						</div>
+					</td>
+					<td>
+						<div class="content">
+							{{pinjam.pengarang}}
+						</div>
+					</td>
+					<td>
+						<div class="content">
+							{{pinjam.tanggal_pinjam}}
+						</div>
+					</td>
+					<td>
+						<div class="content">
+							{{pinjam.tanggal_kembali}}
+						</div>
+					</td>
+				</tr>
+			</tbody>
+			{% endfor %}
+		</table>
+		{% endif %}
+
 		<!-- Tabel Mahasiswa ends here -->
 
 		<h2><a href="#">Edit entri</a></h2>

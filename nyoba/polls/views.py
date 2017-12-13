@@ -20,7 +20,6 @@ class home(generic.ListView):
 	model = Mahasiswa
 	template_name = 'polls/home.html'
 
-
 class pinjam(generic.ListView):
 	model = Peminjaman
 	template_name = 'polls/Peminjaman.html'
@@ -95,6 +94,7 @@ class Searched(generic.ListView):
 		skripsi = Skripsi.objects.filter(NIM__icontains=self.kwargs['nim'])
 		tesis = Tesis.objects.filter(NIM__icontains=self.kwargs['nim'])
 		pn = Penyerahan.objects.filter(NIM__icontains=self.kwargs['nim'])
+		jm = Peminjaman.objects.filter(NIM__icontains=self.kwargs['nim'])
 		if skripsi:
 			context['skripsi'] = skripsi[0].judul_IND
 		elif tesis:
@@ -109,6 +109,8 @@ class Searched(generic.ListView):
 		if pn:
 			context['pnc'] = pn[0].s_cd
 			context['pna'] = pn[0].s_abstrak
+		if jm:
+			context['jm'] = jm
 		return context
 	def get_queryset(self):
 		nim_argument = self.kwargs['nim']

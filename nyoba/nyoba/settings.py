@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '5t^rt=)r92()rzxqm&pv0%_lz!ot48@d^85a*x3^a+fdu!zg!7'
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# SECURITY WARNING: don't run witimth debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -107,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Jakarta'
 
 USE_I18N = True
 
