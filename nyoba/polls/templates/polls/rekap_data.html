@@ -49,16 +49,24 @@
     </div>
   </div>
 
+  {% if messages %}
+  <div class="ui floating message">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+      {% endfor %}
+  </div>
+  {% endif %}
+
   <h1 class="ui center aligned header" style="padding:2%">Rekap Data</h1>
 
-  <div  class="ui center aligned container" style="padding-bottom:4%">
-      <button class="ui disabled button">Rekap Peminjaman Buku</button>
-      <button class="ui button" onclick="location.href='/rekap_data_skripsi'">Rekap skripsi</button>
-      <button class="ui button" onclick="location.href='/rekap_data_tesis'">Rekap tesis</button>
-    </div>
+  <div class="ui center aligned container" style="padding-bottom:4%">
+    <button class="ui disabled button">Rekap Peminjaman Buku</button>
+    <button class="ui button" onclick="location.href='/rekap_data_skripsi'">Rekap skripsi</button>
+    <button class="ui button" onclick="location.href='/rekap_data_tesis'">Rekap tesis</button>
+  </div>
 
   <div style="padding:2%">
-    
+
     <table id="rekap" class="ui celled table " cellspacing="0 " width="100% ">
       <thead>
         <tr>
@@ -71,6 +79,7 @@
           <th>Tanggal Kembali Seharusnya</th>
           <th>Tanggal Kembali Asli</th>
           <th>Status Pengembalian</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -86,8 +95,20 @@
           <td>{{p.tanggal_kembali_riil}}</td>
           {% if p.status == 0 %}
           <td>Belum Dikembalikan</td>
+          <td>
+            <form method="POST" action="{% url 'polls:rekap_data_simpan' id=p.id %}">
+              {% csrf_token %}
+              <button class="ui button" type="submit">tandai sudah mengembalikan</button>
+            </form>
+          </td>
           {% else %}
           <td>Sudah Dikembalikan</td>
+          <td>
+            <form method="POST" action="{% url 'polls:rekap_data_simpan' id=p.id %}">
+              {% csrf_token %}
+              <button class="ui button" type="submit">tandai belum mengembalikan</button>
+            </form>
+          </td>
           {% endif %}
         </tr>
         {% endfor %}

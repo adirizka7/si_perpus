@@ -167,32 +167,11 @@ def sudah_mengembalikan(request, nim, id):
 		messages.success(request, 'Data Berhasil di update')
 	return HttpResponseRedirect(reverse('polls:searched', args=[nim]))
 
-def rekapsm(request, id):
-	if request.POST:
-		try:
-			jm = Peminjaman.objects.get(id=id)
-		except Mahasiswa.DoesNotExist:
-			jm = None
-		if jm:
-			if jm.status == 1:
-				jm.status=0
-			else:
-				jm.status=1
-			jm.tanggal_kembali_riil=timezone.now()
-			jm.save()
-		else:
-			if jm.status == 1:
-				jm.status=0
-			else:
-				jm.status=1
-			jm.tanggal_kembali_riil=timezone.now()
-			jm.save()
-		messages.success(request, 'Data Berhasil di update')
-	return HttpResponseRedirect(reverse('polls:rekap_data')
-
 def savedata_cd(request, nim):
 	if request.POST:
-		if !Penyerahan.objects.filter(NIM__icontains=nim).exist():
+		if Penyerahan.objects.filter(NIM__icontains=nim).exist():
+			pass
+		else:
 			pn = Penyerahan(NIM = nim, s_abstrak = 0, s_cd = 0, buku=0)
 			pn.save()
 		cd=request.POST['cd']
@@ -204,7 +183,9 @@ def savedata_cd(request, nim):
 
 def savedata_abstrak(request, nim):
 	if request.POST:
-		if !Penyerahan.objects.filter(NIM__icontains=nim).exist():
+		if Penyerahan.objects.filter(NIM__icontains=nim).exist():
+			pass
+		else:
 			pn = Penyerahan(NIM = nim, s_abstrak = 0, s_cd = 0, buku=0)
 			pn.save()
 		ab=request.POST['abs']
@@ -261,3 +242,19 @@ def savedata_pinjam(request):
 		pm.save()
 		messages.success(request, 'Form submission successful')
 	return HttpResponseRedirect(reverse('polls:pinjam'))
+
+def rekapsm(request, id):
+	if request.POST:
+		try:
+			jm = Peminjaman.objects.get(id=id)
+		except Peminjaman.DoesNotExist:
+			jm = None
+		if jm:
+			if jm.status == 1:
+				jm.status=0
+			else:
+				jm.status=1
+			jm.tanggal_kembali_riil=timezone.now()
+			jm.save()
+			messages.success(request, 'Data Berhasil di update')
+			return HttpResponseRedirect(reverse('polls:rekap_data'))
