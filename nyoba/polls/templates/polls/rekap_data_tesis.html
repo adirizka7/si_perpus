@@ -52,35 +52,38 @@
   <h1 class="ui center aligned header" style="padding:2%">Rekap Data</h1>
 
   <div class="ui center aligned text container">
+   
     <div style="padding-bottom:4%">
-      <button class="ui disabled button">Rekap Peminjaman Buku</button>
-      <button class="ui button" onclick="location.href='/rekap_data_skripsi'">Rekap skripsi</button>
-      <button class="ui button" onclick="location.href='/rekap_data_tesis'"">Rekap tesis</button>
+      <button class="ui button" onclick="location.href='/rekap_data'"">Rekap Peminjaman Buku</button>
+      <button class="ui button" onclick="location.href='/rekap_data_skripsi'"">Rekap skripsi</button>
+      <button class="ui button disabled">Rekap tesis</button>
     </div>
     <table id="rekap" class="ui celled table" cellspacing="0" width="100%">
       <thead>
         <tr>
           <th>NIM</th>
           <th>Nama</th>
-          <th>Judul Buku</th>
-          <th>Nomor Hp</th>
-          <th>Barcode</th>
-          <th>Tanggal Pinjam</th>
-          <th>Tanggal Kembali Seharusnya</th>
-          <th>Tanggal Kembali Asli</th>
+          <th>ps</th>
+          <th>JUDUL_IND</th>
+          <th>JUDUL_ENG</th>
+          <th>pembinbing</th>
+          <th>penguji</th>
+          <th>Tanggal lulus</th>
+          <th>Tanggal penyerahan</th>
         </tr>
       </thead>
       <tbody>
-        {% for p in rekap_pinjaman %}
+        {% for p in rekap_tesis %}
         <tr>
           <td>{{p.NIM}}</td>
-          <td>{{p.nama}}</td>
-          <td>{{p.judul}}</td>
-          <td>{{p.phone}}</td>
-          <td>{{p.barcode}}</td>
-          <td>{{p.tanggal_pinjam}}</td>
-          <td>{{p.tanggal_kembali}}</td>
-          <td>{{p.tanggal_kembali_riil}}</td>
+          <td>{{p.nama_penulis}}</td>
+          <td>{{p.ps}}</td>
+          <td>{{p.judul_IND}}</td>
+          <td>{{p.judul_ENG}}</td>
+          <td>{{p.pembimbing}}</td>
+          <td>{{p.penguji}}</td>
+          <td>{{p.tanggal_lulus}}</td>
+          <td>{{p.tanggal_penyerahan}}</td>
         </tr>
         {% endfor %}
 

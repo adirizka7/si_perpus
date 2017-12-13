@@ -51,6 +51,20 @@ class rekap_data(generic.ListView):
 	def get_queryset(self):
 		return Peminjaman.objects.all().order_by("id")
 
+class rekap_data_tesis(generic.ListView):
+	model = Tesis
+	template_name = 'polls/rekap_data_tesis.html'
+	context_object_name = 'rekap_tesis'
+	def get_queryset(self):
+		return Tesis.objects.all().order_by("id")
+
+class rekap_data_skripsi(generic.ListView):
+	model = Skripsi
+	template_name = 'polls/rekap_data_skripsi.html'
+	context_object_name = 'rekap_skripsi'
+	def get_queryset(self):
+		return Skripsi.objects.all().order_by("id")
+
 class import_csv(generic.ListView):
 	model = Mahasiswa
 	template_name = 'polls/import_csv.html'
