@@ -90,9 +90,9 @@
           <td>{{p.judul}}</td>
           <td>{{p.phone}}</td>
           <td>{{p.barcode}}</td>
-          <td>{{p.tanggal_pinjam}}</td>
-          <td>{{p.tanggal_kembali}}</td>
-          <td>{{p.tanggal_kembali_riil}}</td>
+          <td>{{p.tanggal_pinjam.date}}</td>
+          <td>{{p.tanggal_kembali.date}}</td>
+          <td>{{p.tanggal_kembali_riil.date}}</td>
           {% if p.status == 0 %}
           <td>Belum Dikembalikan</td>
           <td>
