@@ -102,7 +102,7 @@
 					<!-- <i class="large green checkmark icon"></i>-->
 					{% if pna != 1 %}
 					<!-- <div class="content"> -->
-						<i class="large red remove icon">
+					<i class="large red remove icon">
 					<!-- </div> -->
 					{% else %}
 					<i class="large green checkmark icon"></i> {% endif %}
@@ -113,165 +113,180 @@
 					<!--<i class="large green checkmark icon"></i>-->
 					{% if pnc != 1 %}
 					<!-- <div class="content"> -->
-						<i class="large red remove icon">
+					<i class="large red remove icon">
 					<!-- </div> -->
 					{% else %}
 					<i class="large green checkmark icon"></i> {% endif %}
-					</div>
-				</td>
-				<!-- cd -->
+	</div>
+	</td>
+	<!-- cd -->
 
-				<td class="center aligned">
-					{% if buku%}
+	<td class="center aligned">
+		{% if buku%}
+		<div class="content">
+			{{buku}}
+		</div>
+		{% else %}
+		<i>Belum</i> {% endif %}
+	</td>
+	<!-- buku sumbangan -->
+	</tr>
+	</tbody>
+	</table>
+
+	{% if jm %}
+
+	<table class="ui very basic collapsing celled center aligned table" style="padding-top:6%">
+		<thead>
+			<tr>
+				<th>Judul</th>
+				<th>Barcode</th>
+				<th>No. Hp</th>
+				<th>Pengarang</th>
+				<th>Tanggal Pinjam</th>
+				<th>Tanggal Kembali Seharusnya</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			{% for pinjam in jm %}
+			<tr>
+				<td>
 					<div class="content">
-						{{buku}}
+						{{pinjam.judul}}
 					</div>
-					{% else %}
-					<i>Belum</i> {% endif %}
 				</td>
-				<!-- buku sumbangan -->
+				<td>
+					<div class="content">
+						{{pinjam.barcode}}
+					</div>
+				</td>
+				<td>
+					<div class="content">
+						{{pinjam.phone}}
+					</div>
+				</td>
+				<td>
+					<div class="content">
+						{{pinjam.pengarang}}
+					</div>
+				</td>
+				<td>
+					<div class="content">
+						{{pinjam.tanggal_pinjam}}
+					</div>
+				</td>
+				<td>
+					<div class="content">
+						{{pinjam.tanggal_kembali}}
+					</div>
+				</td>
+				{% if pinjam.status == 0 %}
+				<td>
+					<form method="POST" action="{% url 'polls:sudah_mengembalikan' nim=g.NIM id=pinjam.id %}">
+						{% csrf_token %}
+						<button class="ui button" type="submit">tandai sudah mengembalikan</button>
+					</form>
+				</td>
+				{% else %}
+				<td>
+					<div class="content">
+						sudah mengembalikan
+					</div>
+				</td>
+				{% endif %}
 			</tr>
 		</tbody>
-		</table>
-
-		{% if jm %}
-
-		<table>
-			<thead>
-				<tr>
-					<th>Judul</th>
-					<th>Barcode</th>
-					<th>No. Hp</th>
-					<th>Pengarang</th>
-					<th>Tanggal Pinjam</th>
-					<th>Tanggal Kembali Seharusnya</th>
-				</tr>
-			</thead>
-			{% for pinjam in jm %}
-			<tbody>
-				<tr>
-					<td>
-						<div class="content">
-							{{pinjam.judul}}
-						</div>
-					</td>
-					<td>
-						<div class="content">
-							{{pinjam.barcode}}
-						</div>
-					</td>
-					<td>
-						<div class="content">
-							{{pinjam.phone}}
-						</div>
-					</td>
-					<td>
-						<div class="content">
-							{{pinjam.pengarang}}
-						</div>
-					</td>
-					<td>
-						<div class="content">
-							{{pinjam.tanggal_pinjam}}
-						</div>
-					</td>
-					<td>
-						<div class="content">
-							{{pinjam.tanggal_kembali}}
-						</div>
-					</td>
-				</tr>
-			</tbody>
-			{% endfor %}
-		</table>
-		{% endif %}
-
-		<!-- Tabel Mahasiswa ends here -->
-
-		<!-- <h2><a href="#">Edit entri</a></h2> -->
-		<button class="ui blue button" onclick="fungsi()">Edit Entri</button>
-
-		<div id="div_aku">
-			</br>
-			<!-- Form CD Abstrak -->
-			
-			<h3><a href="#">Mahasiswa sudah menyerahkan CD?</a></h3>
-			<form action="{% url 'polls:cdyn' nim=g.NIM %}" method="post">
-				{% csrf_token %}
-				<input type="radio" name="cd" value="y" required/> Ya
-				<input type="radio" name="cd" value="n" /> Tidak
-				<button class="ui button" type="submit">Submit</button>
-			</form>
-			</br>
-			
-			<h3><a href="#">Mahasiswa sudah menyerahkan Abstrak?</a></h3>
-			<form action="{% url 'polls:abstrakyn' nim=g.NIM %}" method="post">
-				{% csrf_token %}
-				<input type="radio" name="abs" value="y" required/> Ya
-				<input type="radio" name="abs" value="n" /> Tidak
-				<button class="ui button" type="submit">Submit</button>
-			</form>
-			
-			<!-- Form CD Abstrak ends here -->
-
-			<!-- Form Buku Sumbangan -->
-
-			<h1 class="ui Left aligned header" style="padding-top:6%">Buku Sumbangan</h1>
-			<form class="ui form" method="POST" action="{% url 'polls:buku_sumbangan' nim=g.NIM %}">
-				{% csrf_token %}
-				<div class="field">
-					<label>Judul</label>
-					<input type="text" name="judul" placeholder="Judul" required>
-				</div>
-				<div class="field">
-					<label>Penulis</label>
-					<input type="text" name="penulis" placeholder="Penulis" required>
-				</div>
-				<div class="field">
-					<label>Tahun Keluaran</label>
-					<input type="text" name="tahun" placeholder="Tahun(4 angka)" required>
-				</div>
-				<button class="ui button" type="submit">Submit</button>
-			</form>
-		</div>
-
-		<!-- Form Buku Sumbangan ends here-->
-
-		<script>
-			function fungsi() {
-				var x = document.getElementById("div_aku");
-			    if (x.style.display === "none") {
-			        x.style.display = "block";
-			    } else {
-			        x.style.display = "none";
-			    }
-			}
-		</script>
-
 		{% endfor %}
-		</div>
-		<script>
-			$('.message .close')
-				.on('click', function() {
-					$(this)
-						.closest('.message')
-						.transition('fade');
-				});
+	</table>
+	{% endif %}
 
-			$('.ui.form')
-				.form({
-					fields: {
-						name: {
-							identifier: 'tah',
-							rules: [{
-								type: 'regExp[^[0-9]{4}$]',
-								prompt: 'format NIM tidak valid'
-							}]
-						},
+	<!-- Tabel Mahasiswa ends here -->
 
-					}
-				});
-		</script>
+	<!-- <h2><a href="#">Edit entri</a></h2> -->
+	<button class="ui blue button" onclick="fungsi()">Edit Entri</button>
+
+	<div id="div_aku">
+		</br>
+		<!-- Form CD Abstrak -->
+
+		<h3><a href="#">Mahasiswa sudah menyerahkan CD?</a></h3>
+		<form action="{% url 'polls:cdyn' nim=g.NIM %}" method="post">
+			{% csrf_token %}
+			<input type="radio" name="cd" value="y" required/> Ya
+			<input type="radio" name="cd" value="n" /> Tidak
+			<button class="ui button" type="submit">Submit</button>
+		</form>
+		</br>
+
+		<h3><a href="#">Mahasiswa sudah menyerahkan Abstrak?</a></h3>
+		<form action="{% url 'polls:abstrakyn' nim=g.NIM %}" method="post">
+			{% csrf_token %}
+			<input type="radio" name="abs" value="y" required/> Ya
+			<input type="radio" name="abs" value="n" /> Tidak
+			<button class="ui button" type="submit">Submit</button>
+		</form>
+
+		<!-- Form CD Abstrak ends here -->
+
+		<!-- Form Buku Sumbangan -->
+
+		<h1 class="ui Left aligned header" style="padding-top:6%">Buku Sumbangan</h1>
+		<form class="ui form" method="POST" action="{% url 'polls:buku_sumbangan' nim=g.NIM %}">
+			{% csrf_token %}
+			<div class="field">
+				<label>Judul</label>
+				<input type="text" name="judul" placeholder="Judul" required>
+			</div>
+			<div class="field">
+				<label>Penulis</label>
+				<input type="text" name="penulis" placeholder="Penulis" required>
+			</div>
+			<div class="field">
+				<label>Tahun Keluaran</label>
+				<input type="text" name="tahun" placeholder="Tahun(4 angka)" required>
+			</div>
+			<button class="ui button" type="submit">Submit</button>
+		</form>
+	</div>
+
+	<!-- Form Buku Sumbangan ends here-->
+
+	<script>
+		function fungsi() {
+			var x = document.getElementById("div_aku");
+			if (x.style.display === "none") {
+				x.style.display = "block";
+			} else {
+				x.style.display = "none";
+			}
+		}
+	</script>
+
+	{% endfor %}
+	</div>
+	<script>
+		$('.message .close')
+			.on('click', function() {
+				$(this)
+					.closest('.message')
+					.transition('fade');
+			});
+
+		$('.ui.form')
+			.form({
+				fields: {
+					name: {
+						identifier: 'tah',
+						rules: [{
+							type: 'regExp[^[0-9]{4}$]',
+							prompt: 'format NIM tidak valid'
+						}]
+					},
+
+				}
+			});
+	</script>
 </body>
 
 

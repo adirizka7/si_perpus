@@ -132,6 +132,20 @@ def savedata_sumbangan(request, nim):
 		b.save()
 	return HttpResponseRedirect(reverse('polls:searched', args=[nim]))
 
+def sudah_mengembalikan(request, nim, id):
+	if request.POST:
+		try:
+			jm = Peminjaman.objects.get(id=id)
+		except Mahasiswa.DoesNotExist:
+			jm = None
+		if jm:
+			jm.status=1
+			jm.save()
+		else:
+			jm.status=1
+			jm.save()
+	return HttpResponseRedirect(reverse('polls:searched', args=[nim]))
+
 def savedata_cd(request, nim):
 	if request.POST:
 		cd=request.POST['cd']

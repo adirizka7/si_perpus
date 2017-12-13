@@ -4,7 +4,7 @@ from django.conf import settings
 from django.conf.urls import include
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
-    
+
 
 
 from . import views
@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^import_csv/proc$', views.import_csv_process, name='import_csv_process'),
     url(r'^cek_status/$', views.cek_status.as_view(), name='cek_status'),
     url(r'^cek_status/cari/$', views.cari, name='cari'),
+    url(r'^cek_status/kembali/(?P<nim>[a-zA-Z0-9_]+)/(?P<id>[a-zA-Z0-9_]+)/$', views.sudah_mengembalikan, name='sudah_mengembalikan'),
     url(r'^cek_status/(?P<nim>[a-zA-Z0-9_]+)/$', views.Searched.as_view(), name='searched'),
     url(r'^cek_status/(?P<nim>[a-zA-Z0-9_]+)/buku_sumbangan/$', views.savedata_sumbangan, name='buku_sumbangan'),
     url(r'^cek_status/(?P<nim>[a-zA-Z0-9_]+)/cd/$', views.savedata_cd, name='cdyn'),
