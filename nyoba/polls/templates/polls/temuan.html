@@ -54,27 +54,36 @@
 				<div class="header">
 					NIM tidak ditemukan
 				</div>
-				<p><a href="/tambah_data">Anda bisa menambahkan data di sini</a></p>
 			</div>
+
+
+			<h2 class="ui Left aligned header" style="padding-top:6%">Tambah Data Mahasiswa</h2>
+			<form class="ui form" method="POST" action="{% url 'polls:datamh' nim=nimb %}">
+				{% csrf_token %}
+				<div class="Nama">
+					<label>Nama</label>
+					<input type="text" name="nama" placeholder="Nama Mahasiswa" required>
+				</div>
+				<div class="field">
+					<label>NIM</label>
+					<input type="text" name="nim" placeholder="NIM" value="{{nimb}}" required>
+				</div>
+				<button class="ui button" type="submit">Submit</button>
+			</form>
+
 
 			<!-- Tabel Mahasiswa-->
 
 
-			{% endif %} 
-
-			
-			{% for g in searcheded %}
+			{% endif %} {% for g in searcheded %}
 			<h3 class='ui brown header'>Informasi Mahasiswa</h3>
-			<table class="ui  celled center aligned table" >
+			<table class="ui  celled center aligned table">
 				<thead>
 					<tr>
 						<th>Nama</th>
 						<th>NIM</th>
-						{% if tesis%}
-						<th>Tesis</th>
-						{% else %}
 						<th>Skripsi</th>
-						{% endif %}
+						<th>Tesis</th>
 						<th>Abstrak</th>
 						<th>CD</th>
 						<th>Buku Sumbangan</th>
@@ -96,16 +105,20 @@
 					</div>
 				</td>
 				<td class="center aligned">
-					{% if tesis%}
-					<div class="content">
-						{{tesis}}
-					</div>
-					{% elif skripsi%}
+					{% if skripsi%}
 					<div class="content">
 						{{skripsi}}
 					</div>
 					{% else %}
-					<i class="large red remove icon"></i> {% endif %}
+					<i class="large red remove icon" onclick="location.href='/tambah_data/'"></i> {% endif %}
+				</td>
+				<td>
+					{% if tesis%}
+					<div class="content">
+						{{tesis}}
+					</div>
+					{% else %}
+					<i class="large red remove icon" onclick="location.href='/tambah_data/'"></i> {% endif %}
 					<!--<i class="large green checkmark icon"></i>-->
 				</td>
 				<!-- SKripsi -->
@@ -114,10 +127,10 @@
 					<!-- <i class="large green checkmark icon"></i>-->
 					{% if pna != 1 %}
 					<!-- <div class="content"> -->
-					<i class="large red remove icon">
+					<i class="large red remove icon" onclick="location.href='/cek_status/{{g.NIM}}/1/abstrak/'">
 					<!-- </div> -->
 					{% else %}
-					<i class="large green checkmark icon"></i> {% endif %}
+					<i class="large green checkmark icon" onclick="location.href='/cek_status/{{g.NIM}}/0/abstrak/'"></i> {% endif %}
 				</td>
 				<!-- abstrak -->
 
@@ -125,10 +138,10 @@
 					<!--<i class="large green checkmark icon"></i>-->
 					{% if pnc != 1 %}
 					<!-- <div class="content"> -->
-					<i class="large red remove icon">
+					<i class="large red remove icon" onclick="location.href='/cek_status/{{g.NIM}}/1/cd/'">
 					<!-- </div> -->
 					{% else %}
-					<i class="large green checkmark icon"></i> {% endif %}
+					<i class="large green checkmark icon" onclick="location.href='/cek_status/{{g.NIM}}/0/cd/'"></i> {% endif %}
 	</div>
 	</td>
 	<!-- cd -->
@@ -150,7 +163,7 @@
 
 
 	<h3 class='ui brown header' style="padding-top: 2%">Informasi Peminjaman</h3>
-	<table class="ui   celled center aligned table" >
+	<table class="ui   celled center aligned table">
 		<thead>
 			<tr>
 				<th>Judul</th>
@@ -205,8 +218,7 @@
 				{% else %}
 				<td class="positive">
 					<div class="content">
-						<i class="icon green checkmark"></i>
-						sudah mengembalikan
+						<i class="icon green checkmark"></i> sudah mengembalikan
 					</div>
 				</td>
 				{% endif %}
@@ -219,7 +231,7 @@
 	<!-- Tabel Mahasiswa ends here -->
 
 	<!-- <h2><a href="#">Edit entri</a></h2> -->
-	<button class="ui blue button" onclick="fungsi()" >Edit Entri</button>
+	<button class="ui blue button" onclick="fungsi()">Edit Entri</button>
 
 	<div id="div_aku">
 		</br>
@@ -270,6 +282,7 @@
 
 	<script>
 		fungsi();
+		fungus();
 
 		function fungsi() {
 			var x = document.getElementById("div_aku");
@@ -277,6 +290,15 @@
 				x.style.display = "block";
 			} else {
 				x.style.display = "none";
+			}
+		}
+
+		function fungus() {
+			var y = document.getElementById("bikin_baru");
+			if (y.style.display === "none") {
+				y.style.display = "block";
+			} else {
+				y.style.display = "none";
 			}
 		}
 	</script>

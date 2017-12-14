@@ -47,6 +47,20 @@ class tambah_data(generic.ListView):
 	def get_queryset(self):
 		return Mahasiswa.objects.all()
 
+class tambah_data2(generic.ListView):
+	model = Mahasiswa
+	context_object_name = 'arg'
+	template_name = 'polls/tambah_data.html'
+	def get_context_data(self, **kwargs):
+		context = super(tambah_data2, self).get_context_data(**kwargs)
+		namab = self.kwargs['nama']
+		print (namab)
+		nimb = self.kwargs['nim']
+		print (nimb)
+		return context
+	def get_queryset(self):
+		return Mahasiswa.objects.all()
+
 class rekap_data(generic.ListView):
 	model = Peminjaman
 	template_name = 'polls/rekap_data.html'
@@ -143,6 +157,7 @@ class Searched(generic.ListView):
 		tesis = Tesis.objects.filter(NIM__icontains=self.kwargs['nim'])
 		pn = Penyerahan.objects.filter(NIM__icontains=self.kwargs['nim'])
 		jm = Peminjaman.objects.filter(NIM__icontains=self.kwargs['nim'])
+		context['nimb'] = self.kwargs['nim']
 		if skripsi:
 			context['skripsi'] = skripsi[0].judul_IND
 		elif tesis:
@@ -212,6 +227,18 @@ def savedata_cd(request, nim):
 			pn = Penyerahan.objects.filter(NIM__icontains=nim).update(s_cd=0)
 	return HttpResponseRedirect(reverse('polls:searched', args=[nim]))
 
+def savedata_cd2(request, nim, no):
+	if Penyerahan.objects.filter(NIM__icontains=nim).exists():
+		pass
+	else:
+		pn = Penyerahan(NIM = nim, s_abstrak = 0, s_cd = 0, buku=0)
+		pn.save()
+	if no=='1':
+		pn = Penyerahan.objects.filter(NIM__icontains=nim).update(s_cd=1)
+	else:
+		pn = Penyerahan.objects.filter(NIM__icontains=nim).update(s_cd=0)
+	return HttpResponseRedirect(reverse('polls:searched', args=[nim]))
+
 def savedata_abstrak(request, nim):
 	if request.POST:
 		if Penyerahan.objects.filter(NIM__icontains=nim).exists():
@@ -225,6 +252,19 @@ def savedata_abstrak(request, nim):
 		elif ab=='n':
 			pn = Penyerahan.objects.filter(NIM__icontains=nim).update(s_abstrak=0)
 	return HttpResponseRedirect(reverse('polls:searched', args=[nim]))
+
+def savedata_abstrak2(request, nim, no):
+	if Penyerahan.objects.filter(NIM__icontains=nim).exists():
+		pass
+	else:
+		pn = Penyerahan(NIM = nim, s_abstrak = 0, s_cd = 0, buku=0)
+		pn.save()
+	if no=='1':
+		pn = Penyerahan.objects.filter(NIM__icontains=nim).update(s_abstrak=1)
+	else:
+		pn = Penyerahan.objects.filter(NIM__icontains=nim).update(s_abstrak=0)
+	return HttpResponseRedirect(reverse('polls:searched', args=[nim]))
+
 
 def savedata_skripsi(request):
 	if request.POST:
@@ -242,6 +282,15 @@ def savedata_skripsi(request):
 			sv.save()
 		messages.success(request, 'Form submission successful')
 	return HttpResponseRedirect(reverse('polls:tambah_data'))
+
+def tambah_mh(request,nim):
+	if request.POST:
+		nama=request.POST['nama']
+		nim=request.POST['nim']
+		mv = Mahasiswa(nama = nama, NIM = nim, status = 0)
+		mv.save()
+	return HttpResponseRedirect(reverse('polls:searched',args=[nim]))
+
 
 def savedata_tesis(request):
 	if request.POST:
