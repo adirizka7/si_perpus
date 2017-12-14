@@ -48,34 +48,38 @@
   {% endif %}
 
   <div class="ui text container">
-    <h1 class="ui Left aligned header" style="padding-top:6%">Peminjaman Buku</h1>
+    <h1 class="ui center aligned header" style="padding-top:6%">Peminjaman Buku</h1>
     <form class="ui form" method="POST" action="{% url 'polls:savedata_pinjam' %}">
       {% csrf_token %}
-
-      <div class="field">
-        <label>Nama Peminjam</label>
-        <input type="text" name="nama" placeholder="Nama" required>
-      </div>
-      <div class="field">
-        <label>NIM</label>
-        <input type="text" name="nim" placeholder="NIM" required>
+      <div class="fields">
+        <div class="twelve wide field">
+          <label>Nama Peminjam</label>
+          <input type="text" name="nama" placeholder="Nama" required>
+        </div>
+        <div class="four wide field">
+          <label>NIM</label>
+          <input type="text" name="nim" placeholder="NIM" required>
+        </div>
       </div>
       <div class="field">
         <label>Judul</label>
         <input type="text" name="judul" placeholder="Judul" required>
       </div>
       <div class="field">
-        <label>Nomor Telepon</label>
-        <input type="text" name="phone" placeholder="Nomor Telepon" required>
-      </div>
-      <div class="field">
-        <label>Barcode</label>
-        <input type="text" name="barcode" placeholder="Barcode" required>
-      </div>
-      <div class="field">
         <label>Pengarang</label>
         <input type="text" name="pengarang" placeholder="Pengarang" required>
       </div>
+      <div class="two fields">
+        <div class="field">
+          <label>Nomor Telepon</label>
+          <input type="text" name="phone" placeholder="Nomor Telepon" required>
+        </div>
+        <div class="field">
+          <label>Barcode</label>
+          <input type="text" name="barcode" placeholder="Barcode" required>
+        </div>
+      </div>
+      
       <div class="field">
         <label>Tanggal Kembali Seharusnya</label>
         <input type="date" name="tanggal" placeholder="Bulan/Hari/Tahun" required>
