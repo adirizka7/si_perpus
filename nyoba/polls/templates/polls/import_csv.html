@@ -77,17 +77,6 @@
 				</div>
 			</form>
 
-			<form class="ui form" method="POST" action="{% url 'polls:import_csv_process' %}" enctype='multipart/form-data'>
-				{% csrf_token %}
-				<div class="field">
-					<label>Mahasiswa</label>
-				</div>
-				<div class="inline field">
-					<input type="hidden" name="tipe" value="mahasiswa">
-					<input type="file" name="file_doc" required>
-					<button class="ui teal button" type="submit">Submit</button>
-				</div>
-			</form>
 
 			<form class="ui form" method="POST" action="{% url 'polls:import_csv_process' %}" enctype='multipart/form-data'>
 				{% csrf_token %}
@@ -113,48 +102,29 @@
 				</div>
 			</form>
 
-			<form class="ui form" method="POST" action="{% url 'polls:import_csv_process' %}" enctype='multipart/form-data'>
-				{% csrf_token %}
-				<div class="field">
-					<label>Penyerahan</label>
-				</div>
-				<div class="inline field">
-					<input type="hidden" name="tipe" value="penyerahan">
-					<input type="file" name="file_doc" required>
-					<button class="ui teal button" type="submit">Submit</button>
-				</div>
-
-			</form>
+	
 		</div>
 
 		<div class="export_div" >
 
 			<h1 class="ui center aligned header" style="padding:6%">Export CSV</h1>
 			<div class="field" style="padding-left:15%;padding-right:15%;padding-bottom:5%">
-				<button class="ui fluid labeled icon button">
+				<button class="ui fluid labeled icon button" onclick="location.href='/import_csv/get?tipe=polls_Skripsi'"">
 				  <i class="download icon"></i>Skripsi</button>
 				  
 			</div>
 			<div class="field" style="padding-left:15%;padding-right:15%;padding-bottom:5%">
-				<button class="ui fluid labeled icon button">
+				<button class="ui fluid labeled icon button" onclick="location.href='/import_csv/get?tipe=polls_Tesis'"">
 				<i class="download icon"></i>Tesis</button>
 			</div>
 			
 			<div class="field" style="padding-left:15%;padding-right:15%;padding-bottom:5%">
-				<button class="ui fluid labeled icon button">
-				<i class="download icon"></i>Mahasiswa</button> 
-			</div>
-			<div class="field" style="padding-left:15%;padding-right:15%;padding-bottom:5%">
-				<button class="ui fluid labeled icon button">
+				<button class="ui fluid labeled icon button" onclick="location.href='/import_csv/get?tipe=polls_Peminjaman'">
 				<i class="download icon"></i>Peminjaman</button>
 			</div>
 			<div class="field" style="padding-left:15%;padding-right:15%;padding-bottom:5%"> 
-				<button class="ui fluid labeled icon button">
+				<button class="ui fluid labeled icon button" onclick="location.href='/import_csv/get?tipe=polls_BukuS'"">
 				<i class="download icon"></i>Buku Sumbangan</button>
-			</div>
-			<div class="field" style="padding-left:15%;padding-right:15%">
-				<button class="ui fluid labeled icon button">
-				<i class="download icon"></i>Penyerahan</button>
 			</div>
 		</div>
 

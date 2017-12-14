@@ -107,20 +107,25 @@ def import_csv_process(request):
 	return HttpResponseRedirect(reverse('polls:import_csv'))
 
 def import_csv_get(request):
-	tipe = request.GET['tipe']
+	tipe = str(request.GET['tipe'])
 	print(tipe)
 	import sqlite3
 	# tinggal ambil database sesuai nama tipe
 	connection = sqlite3.connect("db.sqlite3")
 
-	with open("temp/"+"Mahasiswa.csv", "w") as write_file:
+	# polls_Skripsi
+	# polls_Tesis
+	# polls_Peminjaman
+	# polls_BukuS
+
+	with open("temp/"+tipe[6:]+".csv", "w") as write_file:
 	    cursor = connection.cursor()
-	    for row in cursor.execute("SELECT * FROM polls_Mahasiswa"):
+	    for row in cursor.execute("SELECT * FROM "+tipe):
 	        writeRow = ",".join(str(v) for v in row)
 	        write_file.write(writeRow)
 	        write_file.write("\n")
 
-	file_path = os.getcwd()+'/temp/Mahasiswa.csv'
+	file_path = os.getcwd()+'/temp/'+tipe[6:]+'.csv'
 	if os.path.exists(file_path):
 		with open(file_path, 'rb') as fh:
 			response = HttpResponse(fh.read(), content_type="text/csv")
