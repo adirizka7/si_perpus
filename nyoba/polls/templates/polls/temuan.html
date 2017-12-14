@@ -45,10 +45,10 @@
 		</div>
 		{% endif %}
 
-		<h1 class="ui center aligned header" style="padding-top:6%;padding-bottom:2%">Cek Status Mahasiswa</h1>
+		<h1 class="ui center aligned header" style="padding-bottom:2%">Cek Status Mahasiswa</h1>
 
-		<div class="ui center aligned text container">
-			<a href="/cek_status">Kembali</a> {% csrf_token %} {% if not searcheded %}
+		<div class="ui  text container">
+			{% csrf_token %} {% if not searcheded %}
 			<div class="ui warning message" style="padding-top:6%">
 				<i class="close icon"></i>
 				<div class="header">
@@ -59,9 +59,13 @@
 
 			<!-- Tabel Mahasiswa-->
 
-			{% endif %} {% for g in searcheded %}
 
-			<table class="ui very basic  celled center aligned table" style="padding-top:6%">
+			{% endif %} 
+
+			
+			{% for g in searcheded %}
+			<h3 class='ui brown header'>Informasi Mahasiswa</h3>
+			<table class="ui  celled center aligned table" >
 				<thead>
 					<tr>
 						<th>Nama</th>
@@ -144,7 +148,9 @@
 
 	{% if jm %}
 
-	<table class="ui very basic collapsing celled center aligned table" style="padding-top:6%">
+
+	<h3 class='ui brown header' style="padding-top: 2%">Informasi Peminjaman</h3>
+	<table class="ui   celled center aligned table" >
 		<thead>
 			<tr>
 				<th>Judul</th>
@@ -197,8 +203,9 @@
 					</form>
 				</td>
 				{% else %}
-				<td>
+				<td class="positive">
 					<div class="content">
+						<i class="icon green checkmark"></i>
 						sudah mengembalikan
 					</div>
 				</td>
@@ -212,7 +219,7 @@
 	<!-- Tabel Mahasiswa ends here -->
 
 	<!-- <h2><a href="#">Edit entri</a></h2> -->
-	<button class="ui blue button" onclick="fungsi()">Edit Entri</button>
+	<button class="ui blue button" onclick="fungsi()" >Edit Entri</button>
 
 	<div id="div_aku">
 		</br>

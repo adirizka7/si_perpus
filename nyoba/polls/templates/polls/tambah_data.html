@@ -47,7 +47,7 @@
 	{% endif %}
 
 
-	<h1 class="ui center aligned header" style="padding-top:6%">Tambah Data</h1>
+	<h1 class="ui center aligned header" >Tambah Data</h1>
 
 	<div class="ui text container">
 		<div class="ui center aligned container">
@@ -61,15 +61,16 @@
 		<!--  -->
 
 		<form class="ui form skripsi_form" method="POST" action="{% url 'polls:skripsi' %}">
-			<h1 class="ui Left aligned header" style="padding-top:6%">Skripsi</h1> {% csrf_token %}
-
-			<div class="field">
-				<label>Nama</label>
-				<input type="text" name="nama" placeholder="Nama" required>
-			</div>
-			<div class="field">
-				<label>NIM</label>
-				<input type="text" name="nim" placeholder="NIM" required>
+			<h1 class="ui Left aligned header" style="padding-top:4%">Skripsi</h1> {% csrf_token %}
+			<div class='fields'>
+				<div class="thirteen wide field">
+					<label>Nama</label>
+					<input type="text" name="nama" placeholder="Nama" required>
+				</div>
+				<div class="three wide field">
+					<label>NIM</label>
+					<input type="text" name="nim" placeholder="NIM" required>
+				</div>
 			</div>
 			<div class="field">
 				<label>Judul(Indonesia)</label>
@@ -79,21 +80,25 @@
 				<label>Judul(English)</label>
 				<input type="text" name="ENG" placeholder="ENG" required>
 			</div>
-			<div class="field">
-				<label>Pembimbing</label>
-				<input type="text" name="pembimbing" placeholder="Pembimbing" required>
+			<div class="two fields">
+				<div class="field">
+					<label>Pembimbing</label>
+					<input type="text" name="pembimbing" placeholder="Pembimbing" required>
+				</div>
+				<div class="field">
+					<label>Penguji</label>
+					<input type="text" name="penguji" placeholder="Penguji" required>
+				</div>
 			</div>
-			<div class="field">
-				<label>Penguji</label>
-				<input type="text" name="penguji" placeholder="Penguji" required>
-			</div>
-			<div class="field">
-				<label>Tanggal Penyerahan</label>
-				<input type="date" name="tanggal" placeholder="Bulan/Hari/Tahun" required>
-			</div>
-			<div class="field">
-				<label>Tanggal Lulus</label>
-				<input type="date" name="lulus" placeholder="Bulan/Hari/Tahun" required>
+			<div class="two fields">
+				<div class="field">
+					<label>Tanggal Penyerahan</label>
+					<input type="date" name="tanggal" placeholder="Bulan/Hari/Tahun" required>
+				</div>
+				<div class="field">
+					<label>Tanggal Lulus</label>
+					<input type="date" name="lulus" placeholder="Bulan/Hari/Tahun" required>
+				</div>
 			</div>
 			<div class="field">
 			</div>
@@ -103,14 +108,20 @@
 
 
 		<form class="ui form tesis_form" method="POST" action="{% url 'polls:tesis' %}">
-			<h1 class="ui Left aligned header" style="padding-top:6%">Tesis</h1> {% csrf_token %}
-			<div class="field">
-				<label>Nama</label>
-				<input type="text" name="nama1" placeholder="Nama" required>
-			</div>
-			<div class="field">
-				<label>NIM</label>
-				<input type="text" name="nim1" placeholder="NIM" required>
+			<h1 class="ui Left aligned header" style="padding-top:4%">Tesis</h1> {% csrf_token %}
+			<div class="fields">
+				<div class="eleven wide field">
+					<label>Nama</label>
+					<input type="text" name="nama1" placeholder="Nama" required>
+				</div>
+				<div class="three wide field">
+					<label>NIM</label>
+					<input type="text" name="nim1" placeholder="NIM" required>
+				</div>
+				<div class="two wide field">
+					<label>PS</label>
+					<input type="text" name="ps" placeholder="PS" required>
+				</div>
 			</div>
 			<div class="field">
 				<label>Judul(Indonesia)</label>
@@ -120,26 +131,27 @@
 				<label>Judul(English)</label>
 				<input type="text" name="ENG1" placeholder="ENG" required>
 			</div>
-			<div class="field">
-				<label>PS</label>
-				<input type="text" name="ps" placeholder="PS" required>
-			</div>
+			
 
-			<div class="field">
-				<label>Pembimbing</label>
-				<input type="text" name="pembimbing1" placeholder="Pembimbing" required>
+			<div class="two fields">
+				<div class="field">
+					<label>Pembimbing</label>
+					<input type="text" name="pembimbing1" placeholder="Pembimbing" required>
+				</div>
+				<div class="field">
+					<label>Penguji</label>
+					<input type="text" name="penguji1" placeholder="Penguji" required>
+				</div>
 			</div>
-			<div class="field">
-				<label>Penguji</label>
-				<input type="text" name="penguji1" placeholder="Penguji" required>
-			</div>
-			<div class="field">
-				<label>Tanggal Penyerahan</label>
-				<input type="date" name="tanggal1" placeholder="Bulan/Hari/Tahun" required>
-			</div>
-			<div class="field">
-				<label>Tanggal Lulus</label>
-				<input type="date" name="lulus1" placeholder="Bulan/Hari/Tahun" required>
+			<div class="two fields">
+				<div class="field">
+					<label>Tanggal Penyerahan</label>
+					<input type="date" name="tanggal1" placeholder="Bulan/Hari/Tahun" required>
+				</div>
+				<div class="field">
+					<label>Tanggal Lulus</label>
+					<input type="date" name="lulus1" placeholder="Bulan/Hari/Tahun" required>
+				</div>
 			</div>
 			<div class="field">
 			</div>
