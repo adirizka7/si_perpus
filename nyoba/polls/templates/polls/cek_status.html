@@ -48,7 +48,7 @@
 		<form class="ui massive form" method="post" action="{% url 'polls:cari'%}">
 			{% csrf_token %}
 			<div class="field">
-				<input type="text" placeholder="Nama / NIM" name="search">
+				<input type="text" placeholder="NIM" name="search">
 			</div>
 			<button class="massive ui teal button" type="submit">Cek Status</button>
 			<div class="ui error message"></div>
