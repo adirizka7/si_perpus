@@ -281,7 +281,7 @@ def savedata_skripsi(request):
 			sv = Skripsi(judul_IND=request.POST['IND'], judul_ENG=request.POST['ENG'], nama_penulis=nama, NIM=nim, pembimbing=request.POST['pembimbing'], penguji=request.POST['penguji'], tanggal_penyerahan=request.POST['tanggal'], tanggal_lulus=request.POST['lulus'],pub_date=timezone.now())
 			sv.save()
 		messages.success(request, 'Form submission successful')
-	return HttpResponseRedirect(reverse('polls:tambah_data'))
+	return HttpResponseRedirect(reverse('polls:searched', args=[nim]))
 
 def tambah_mh(request,nim):
 	if request.POST:
